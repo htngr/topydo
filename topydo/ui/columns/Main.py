@@ -46,8 +46,6 @@ from topydo.ui.columns.Transaction import Transaction
 from topydo.ui.columns.Utils import PaletteItem, to_urwid_color
 from topydo.ui.columns.ViewWidget import ViewWidget
 
-from columnar import columnar
-
 
 class UIView(View):
     """
@@ -336,74 +334,8 @@ class UIApplication(CLIApplicationBase):
             return
 
         if subcommand is None:
-            if args[1] == 'nav':
-                title = 'Navigation'
-                headers = ['Key', 'Action', 'Description']
-                rows = [
-                    ['j or ↓', 'down', 'Move one item down'],
-                    ['k or ↑', 'up', 'Move one item up'],
-                    ['l or →', 'next_column', 'Move to next column'],
-                    ['h or ←', 'prev_column', 'Move to previous column'],
-                    ['gg or Home', 'home', 'Move to top'],
-                    ['G or End', 'end', 'Move to bottom'],
-                    ['0', 'first_column', 'Move to first column'],
-                    ['$', 'last_column', 'Move to last column'],
-                    [':', '', 'Focus the commandline to execute custom commands.']
-                ]
-                help_text = columnar(rows, headers, no_borders=True)
-                self._print_to_console(f'{title}\n{help_text}')
-                return
-            elif args[1] == 'col':
-                title = 'Column actions'
-                headers = ['Key', 'Action', 'Description']
-                rows = [
-                    ['A', 'append_column', 'Add/append column (at the right)'],
-                    ['I', 'insert_column', 'Insert new column before the current column'],
-                    ['E', 'edit_column', 'Edit the current column definition'],
-                    ['D', 'delete_column', 'Delete the current column'],
-                    ['Y', 'copy_column', 'Copy (yank) the current column'],
-                    ['L', 'swap_left', 'Swap current column with left neighbouring column'],
-                    ['R', 'swap_right', 'Swap current column with right neighbouring column'],
-                    ['Ctrl-a', 'mark_all', 'Marks all items in the current column']
-                ]
-                help_text = columnar(rows, headers, no_borders=True)
-                self._print_to_console(f'{title}\n{help_text}')
-                return
-            elif args[1] == 'item':
-                title = 'Todo item actions'
-                headers = ['Key', 'Action', 'Description']
-                rows = [
-                    ['d', 'cmd del {}', "Executes 'del' on highlighted item(s)"],
-                    ['e', 'cmd edit {}', "Executes 'edit' on highlighted item(s)"],
-                    ['m', 'mark', 'Mark current item (for performing actions on multiple items simultaneously)'],
-                    ['pp<period>', 'postpone', "Executes 'postpone' on the highlighted item(s) with the given period."],
-                    ['pr<priority>', 'pri', "Executes 'pri' on the highlighted item(s) with the given priority."],
-                    ['ps<period>', 'postpone_s',
-                     "Executes 'postpone' in strict mode on the highlighted item(s) with the given period."],
-                    ['u', 'cmd revert', "Executes 'revert'"],
-                    ['x', 'cmd do {}', "Executes 'do' on highlighted item(s)"],
-                    ['.', 'repeat',
-                     "Repeats the last command on the current item. When the last command was entered on the commandline,\n"
-                     "that command should have the '{}' placeholder to insert the current item."]
-                ]
-                help_text = columnar(rows, headers, no_borders=True)
-                self._print_to_console(f'{title}\n{help_text}')
-                return
-            elif args[1] == 'cl':
-                title = "Commandline shortcuts\n\n" \
-                        "The commandline, activated when pressing ':', supports the following keys:"
-                rows = [
-                    ['Ctrl-a', 'Move to the beginning'],
-                    ['Ctrl-e', 'Move to the end'],
-                    ['Ctrl-u', 'Delete from the cursor to the beginning'],
-                    ['Ctrl-k', 'Delete from the cursor up to the end']
-                ]
-                help_text = columnar(rows, no_borders=True)
-                self._print_to_console(f'{title}\n{help_text}')
-                return
-            else:
-                self._print_to_console(GENERIC_HELP)
-                return
+            self._print_to_console(GENERIC_HELP)
+            return
 
         env_args = (self.todolist, p_output, self._output, self._input)
         ids = None
