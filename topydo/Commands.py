@@ -33,6 +33,7 @@ SUBCOMMAND_MAP = {
     'do': 'DoCommand',
     'edit': 'EditCommand',
     'exit': 'ExitCommand',  # used for the prompt
+    'helpnav': 'HelpNavigationCommand',
     'ls': 'ListCommand',
     'lscon': 'ListContextCommand',
     'lsprj': 'ListProjectCommand',
