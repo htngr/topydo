@@ -1,8 +1,7 @@
 from topydo.lib.Command import Command
 import os
 
-""" This module tests the ClearCommand class that implements the 'clear' subcommand.
-     A command that clears topydo on the prompt CLI. """
+""" This module implements terminal functionality for the 'clear' command. """
 
 class ClearCommand(Command):
     def __init__(self, p_args, p_todolist, #pragma: no branch
