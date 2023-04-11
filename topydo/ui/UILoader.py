@@ -61,7 +61,10 @@ def main():
                 else:
                     error("Could not load column mode: {}".format(err))
         elif args[0] != SUBCOMMAND_MAP.keys():
-            print('Sorry this command is invalid, please try again :( ')
+            try:
+                print('Sorry this command is invalid, please try again :( ')
+            except SyntaxError as errr:
+                print('Sorry this command is invalid, please try again :(' )
         else:
             CLIApplication().run()
     except IndexError:
