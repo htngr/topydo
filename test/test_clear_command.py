@@ -27,8 +27,10 @@ class ClearCommandTest(CommandTest):
 
         self.assertEqual(name, 'clear')
 
+
+
     def test_help(self):
-        """ This function tests the help command """
+        """ This test function clears the command help"""
 
         command = ClearCommand(['help'], None, self.out, self.error)
         command.execute()
