@@ -19,8 +19,10 @@
 import getopt
 import sys
 
-from topydo.ui.cli.CLI import CLIApplication
+
+
 from topydo.ui.CLIApplicationBase import MAIN_LONG_OPTS, MAIN_OPTS, error
+from topydo.ui.cli.CLI import CLIApplication
 
 _WINDOWS = "win32" in sys.platform
 
@@ -58,6 +60,8 @@ def main():
                     error("Column mode is not supported on Windows.")
                 else:
                     error("Could not load column mode: {}".format(err))
+        elif args[0] != SUBCOMMAND_MAP.keys():
+            print('Sorry this command is invalid, please try again :( ')
         else:
             CLIApplication().run()
     except IndexError:
