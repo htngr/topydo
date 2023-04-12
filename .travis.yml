@@ -27,15 +27,15 @@ install:
   - "pip install .[prompt]"
   - "pip install .[test]"
   - "pip install pylint"
-#  - "pip install codecov"
+  - "pip install codecov"
   - "pip install -U isort"
 script:
   - "green -vvr $GREEN_OPTS"
   - "python -m pylint --errors-only topydo test"
   - "isort -c -rc ."
 # Cache Dependencies
-#after_script:
-#  - codecov
+after_script:
+  - codecov
 cache:
   directories:
     - $HOME/travis/.cache/pip
