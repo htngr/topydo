@@ -33,6 +33,9 @@ SUBCOMMAND_MAP = {
     'do': 'DoCommand',
     'edit': 'EditCommand',
     'exit': 'ExitCommand',  # used for the prompt
+    'helpcl': 'HelpCommandLineCommand',
+    'helpcol': 'HelpColumnActionsCommand',
+    'helpitem': 'HelpTodoItemActionsCommand',
     'helpnav': 'HelpNavigationCommand',
     'ls': 'ListCommand',
     'lscon': 'ListContextCommand',
@@ -122,7 +125,7 @@ def get_subcommand(p_args):
                 if subcommand in SUBCOMMAND_MAP:
                     args = [subcommand, 'help']
                     return get_subcommand(args)
-                elif subcommand == 'nav':
+                elif subcommand in ['cl', 'col', 'item', 'nav']:
                     result = import_subcommand(f'help{subcommand}')
                     args = []
             except IndexError:
