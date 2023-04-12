@@ -1,6 +1,8 @@
 from topydo.lib.Command import Command
 import os
 
+""" This module implements terminal functionality for the 'clear' command. """
+
 
 class ClearCommand(Command):
     def __init__(self, p_args, p_todolist, #pragma: no branch
