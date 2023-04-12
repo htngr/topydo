@@ -4,6 +4,8 @@ from topydo.commands.ClearCommand import ClearCommand
 import os
 
 """This module contains all the test functions for the clear command """
+
+
 class ClearCommandTest(CommandTest):
     def test_clear_command(self):
         """This function tests the clear command """
@@ -22,16 +24,12 @@ class ClearCommandTest(CommandTest):
 
     def test_clear_name(self):
         """ This test function validates that the command name is ‘clear’ """
-
         name = ClearCommand.name()
 
         self.assertEqual(name, 'clear')
 
-
-
     def test_help(self):
         """ This test function validates the correct help text for the clear command"""
-
         command = ClearCommand(['help'], None, self.out, self.error)
         command.execute()
 
