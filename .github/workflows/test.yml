@@ -26,6 +26,7 @@ jobs:
         pip install .[test]
         pip install pylint
         pip install -U isort
+        pip install columnar
         pip install pytest
     - name: Run pytests
       run: |
