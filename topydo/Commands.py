@@ -122,6 +122,9 @@ def get_subcommand(p_args):
                 if subcommand in SUBCOMMAND_MAP:
                     args = [subcommand, 'help']
                     return get_subcommand(args)
+                elif subcommand == 'nav':
+                    result = import_subcommand(f'help{subcommand}')
+                    args = []
             except IndexError:
                 # will result in empty result
                 pass
