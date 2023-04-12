@@ -6,7 +6,7 @@ import os
 
 class HelpNavigationCommandTest(CommandTest):
     def test_help_navigation_command(self):
-        command = HelpNavigationCommand([""], None, self.out, self.error)
+        command = HelpNavigationCommand([], None, self.out, self.error)
         command.execute()
 
         self.assertEqual(self.output, 'Navigation\n'
