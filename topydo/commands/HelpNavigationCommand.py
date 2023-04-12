@@ -29,7 +29,10 @@ class HelpNavigationCommand(Command):
         self.out(f'Navigation\n{help_text}')
 
     def usage(self):
-        return """Synopsis: helpnav"""
+        return """\
+Synopsis: help nav
+          helpnav\
+"""
 
     def help(self):
         return """Lists default keyboard shortcuts for navigation in the Column UI."""
