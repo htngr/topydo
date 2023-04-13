@@ -53,8 +53,7 @@ class HelpNavigationCommandTest(CommandTest):
         self.assertIn('G or End    end           Move to bottom', help_nav_cmd_output)
         self.assertIn('0           first_column  Move to first column', help_nav_cmd_output)
         self.assertIn('$           last_column   Move to last column', help_nav_cmd_output)
-        self.assertIn(':                         Focus the commandline to execute custom commands.',
-                      help_nav_cmd_output)
+        self.assertIn(':                         Focus the commandline to execute custom commands.', help_nav_cmd_output)
 
         os.remove('help_nav_cmd_output.txt')
 
