@@ -5,7 +5,7 @@ import os
 
 
 class HelpColumnActionsCommandTest(CommandTest):
-    def test_help_navigation_command(self):
+    def test_help_column_actions_command(self):
         command = HelpColumnActionsCommand([], None, self.out, self.error)
         command.execute()
 
