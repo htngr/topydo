@@ -29,9 +29,28 @@ from topydo.lib.TodoListBase import InvalidTodoException
 from topydo.lib.Utils import get_terminal_size
 from topydo.lib.View import View
 
+# issue: enhance list command to allow user to specify an HTML or Markdown output format
+format_selection = input("Format Options: \n1) HTML\n2) Markdown\nselect format: ")
+
+# output_format = format_selection
+def list_items(items, output_format=format_selection):
+    if output_format == "1":
+        output = "<ol>\n"
+        for item in items:
+            output += f"<li>{item}</li>\n"
+        output += "</ol>"
+    elif output_format == "2":
+        output = ""
+        for itme in items:
+            output += f'* {itme}\n'
+    else:
+        output = "invalid format --> select 1 or 2"
+    return output
+
 
 class ListCommand(ExpressionCommand):
-    def __init__(self, p_args, p_todolist, #pragma: no branch
+
+    def __init__(self, p_args, p_todolist,  # pragma: no branch
                  p_out=lambda a: None,
                  p_err=lambda a: None,
                  p_prompt=lambda a: None):
@@ -178,11 +197,11 @@ class ListCommand(ExpressionCommand):
             Otherwise, it looks for a newline ('\n') in the environmental variable
             PS1.
         '''
-        lines_in_prompt = 1     # prompt is assumed to take up one line, even
-                                #   without any newlines in it
+        lines_in_prompt = 1  # prompt is assumed to take up one line, even
+        #   without any newlines in it
         if "win32" in sys.platform:
             lines_in_prompt += 1  # Windows will typically print a free line after
-                                  #   the program output
+            #   the program output
             a = re.findall(r'\$_', os.getenv('PROMPT', ''))
             lines_in_prompt += len(a)
         else:
