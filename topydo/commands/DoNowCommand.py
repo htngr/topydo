@@ -35,7 +35,7 @@ class DoNowCommand(Command):
         except InvalidCommandArgument:
             self.error(self.usage())
         except InvalidTodoException:
-            self.error("Invalid todo number given.")
+            self.error("Invalid todo number.")
 
     def usage(self):
         return """Synopsis: donow <NUMBER>"""
