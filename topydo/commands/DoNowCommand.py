@@ -20,15 +20,14 @@ class DoNowCommand(Command):
             todo = self.todolist.todo(todo_id)
 
             self.out(f'DOING: {self.printer.print_todo(todo)}')
+
             min_value = 0 if len(todo.tag_values('min')) == 0 else int(todo.tag_values('min')[0])
-            # print(min_value)
             min_elapsed = 0
 
             try:
                 while True:
                     time.sleep(1 * 60)
                     min_elapsed += 1
-                    # print(min_elapsed)
             except KeyboardInterrupt:
                 TagCommand([todo_id, 'min', f'{min_value + min_elapsed}'], self.todolist).execute()
                 self.out(f'\n{min_elapsed} MINUTE(S) PASSED\n'
