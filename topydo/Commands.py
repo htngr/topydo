@@ -32,6 +32,7 @@ SUBCOMMAND_MAP = {
     'dep': 'DepCommand',
     'depri': 'DepriCommand',
     'do': 'DoCommand',
+    'donow': 'DoNowCommand',
     'edit': 'EditCommand',
     'exit': 'ExitCommand',  # used for the prompt
     'ls': 'ListCommand',
