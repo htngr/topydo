@@ -58,6 +58,108 @@ class HelpColumnActionsCommandTest(CommandTest):
                               '  Ctrl-a  mark_all       Marks all items in the current column               \n',
                               '\n'], help_col_cmd_output)
 
+        os.system('topydo col help > help_col_cmd_output.txt')
+        help_col_cmd_output = open('help_col_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Column actions\n',
+                              '        \n',
+                              '  KEY     ACTION         DESCRIPTION                                         \n',
+                              '    \n',
+                              '  A       append_column  Add/append column (at the right)                    \n',
+                              '  I       insert_column  Insert new column before the current column         \n',
+                              '  E       edit_column    Edit the current column definition                  \n',
+                              '  D       delete_column  Delete the current column                           \n',
+                              '  Y       copy_column    Copy (yank) the current column                      \n',
+                              '  L       swap_left      Swap current column with left neighbouring column   \n',
+                              '  R       swap_right     Swap current column with right neighbouring column  \n',
+                              '  Ctrl-a  mark_all       Marks all items in the current column               \n',
+                              '\n'], help_col_cmd_output)
+
+        os.system('topydo colhelp > help_col_cmd_output.txt')
+        help_col_cmd_output = open('help_col_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Column actions\n',
+                              '        \n',
+                              '  KEY     ACTION         DESCRIPTION                                         \n',
+                              '    \n',
+                              '  A       append_column  Add/append column (at the right)                    \n',
+                              '  I       insert_column  Insert new column before the current column         \n',
+                              '  E       edit_column    Edit the current column definition                  \n',
+                              '  D       delete_column  Delete the current column                           \n',
+                              '  Y       copy_column    Copy (yank) the current column                      \n',
+                              '  L       swap_left      Swap current column with left neighbouring column   \n',
+                              '  R       swap_right     Swap current column with right neighbouring column  \n',
+                              '  Ctrl-a  mark_all       Marks all items in the current column               \n',
+                              '\n'], help_col_cmd_output)
+
+        os.system('topydo help col foo > help_col_cmd_output.txt')
+        help_col_cmd_output = open('help_col_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Column actions\n',
+                              '        \n',
+                              '  KEY     ACTION         DESCRIPTION                                         \n',
+                              '    \n',
+                              '  A       append_column  Add/append column (at the right)                    \n',
+                              '  I       insert_column  Insert new column before the current column         \n',
+                              '  E       edit_column    Edit the current column definition                  \n',
+                              '  D       delete_column  Delete the current column                           \n',
+                              '  Y       copy_column    Copy (yank) the current column                      \n',
+                              '  L       swap_left      Swap current column with left neighbouring column   \n',
+                              '  R       swap_right     Swap current column with right neighbouring column  \n',
+                              '  Ctrl-a  mark_all       Marks all items in the current column               \n',
+                              '\n'], help_col_cmd_output)
+
+        os.system('topydo helpcol foo > help_col_cmd_output.txt')
+        help_col_cmd_output = open('help_col_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Column actions\n',
+                              '        \n',
+                              '  KEY     ACTION         DESCRIPTION                                         \n',
+                              '    \n',
+                              '  A       append_column  Add/append column (at the right)                    \n',
+                              '  I       insert_column  Insert new column before the current column         \n',
+                              '  E       edit_column    Edit the current column definition                  \n',
+                              '  D       delete_column  Delete the current column                           \n',
+                              '  Y       copy_column    Copy (yank) the current column                      \n',
+                              '  L       swap_left      Swap current column with left neighbouring column   \n',
+                              '  R       swap_right     Swap current column with right neighbouring column  \n',
+                              '  Ctrl-a  mark_all       Marks all items in the current column               \n',
+                              '\n'], help_col_cmd_output)
+
+        os.system('topydo col help foo > help_col_cmd_output.txt')
+        help_col_cmd_output = open('help_col_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Column actions\n',
+                              '        \n',
+                              '  KEY     ACTION         DESCRIPTION                                         \n',
+                              '    \n',
+                              '  A       append_column  Add/append column (at the right)                    \n',
+                              '  I       insert_column  Insert new column before the current column         \n',
+                              '  E       edit_column    Edit the current column definition                  \n',
+                              '  D       delete_column  Delete the current column                           \n',
+                              '  Y       copy_column    Copy (yank) the current column                      \n',
+                              '  L       swap_left      Swap current column with left neighbouring column   \n',
+                              '  R       swap_right     Swap current column with right neighbouring column  \n',
+                              '  Ctrl-a  mark_all       Marks all items in the current column               \n',
+                              '\n'], help_col_cmd_output)
+
+        os.system('topydo colhelp foo > help_col_cmd_output.txt')
+        help_col_cmd_output = open('help_col_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Column actions\n',
+                              '        \n',
+                              '  KEY     ACTION         DESCRIPTION                                         \n',
+                              '    \n',
+                              '  A       append_column  Add/append column (at the right)                    \n',
+                              '  I       insert_column  Insert new column before the current column         \n',
+                              '  E       edit_column    Edit the current column definition                  \n',
+                              '  D       delete_column  Delete the current column                           \n',
+                              '  Y       copy_column    Copy (yank) the current column                      \n',
+                              '  L       swap_left      Swap current column with left neighbouring column   \n',
+                              '  R       swap_right     Swap current column with right neighbouring column  \n',
+                              '  Ctrl-a  mark_all       Marks all items in the current column               \n',
+                              '\n'], help_col_cmd_output)
+
         os.remove('help_col_cmd_output.txt')
 
     def test_helpcolumnactions_name(self):
