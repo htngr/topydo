@@ -52,6 +52,96 @@ class HelpCommandLineCommandTest(CommandTest):
                               '  Ctrl-k  Delete from the cursor up to the end     \n',
                               '\n'], help_cl_cmd_output)
 
+        os.system('topydo cl help > help_cl_cmd_output.txt')
+        help_cl_cmd_output = open('help_cl_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Commandline shortcuts\n',
+                              '\n',
+                              "The commandline, activated when pressing ':', supports the following keys:\n",
+                              '      \n',
+                              '  KEY     DESCRIPTION                              \n',
+                              '    \n',
+                              '  Ctrl-a  Move to the beginning                    \n',
+                              '  Ctrl-e  Move to the end                          \n',
+                              '  Ctrl-u  Delete from the cursor to the beginning  \n',
+                              '  Ctrl-k  Delete from the cursor up to the end     \n',
+                              '\n'], help_cl_cmd_output)
+
+        os.system('topydo clhelp > help_cl_cmd_output.txt')
+        help_cl_cmd_output = open('help_cl_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Commandline shortcuts\n',
+                              '\n',
+                              "The commandline, activated when pressing ':', supports the following keys:\n",
+                              '      \n',
+                              '  KEY     DESCRIPTION                              \n',
+                              '    \n',
+                              '  Ctrl-a  Move to the beginning                    \n',
+                              '  Ctrl-e  Move to the end                          \n',
+                              '  Ctrl-u  Delete from the cursor to the beginning  \n',
+                              '  Ctrl-k  Delete from the cursor up to the end     \n',
+                              '\n'], help_cl_cmd_output)
+
+        os.system('topydo help cl foo > help_cl_cmd_output.txt')
+        help_cl_cmd_output = open('help_cl_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Commandline shortcuts\n',
+                              '\n',
+                              "The commandline, activated when pressing ':', supports the following keys:\n",
+                              '      \n',
+                              '  KEY     DESCRIPTION                              \n',
+                              '    \n',
+                              '  Ctrl-a  Move to the beginning                    \n',
+                              '  Ctrl-e  Move to the end                          \n',
+                              '  Ctrl-u  Delete from the cursor to the beginning  \n',
+                              '  Ctrl-k  Delete from the cursor up to the end     \n',
+                              '\n'], help_cl_cmd_output)
+
+        os.system('topydo helpcl foo > help_cl_cmd_output.txt')
+        help_cl_cmd_output = open('help_cl_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Commandline shortcuts\n',
+                              '\n',
+                              "The commandline, activated when pressing ':', supports the following keys:\n",
+                              '      \n',
+                              '  KEY     DESCRIPTION                              \n',
+                              '    \n',
+                              '  Ctrl-a  Move to the beginning                    \n',
+                              '  Ctrl-e  Move to the end                          \n',
+                              '  Ctrl-u  Delete from the cursor to the beginning  \n',
+                              '  Ctrl-k  Delete from the cursor up to the end     \n',
+                              '\n'], help_cl_cmd_output)
+
+        os.system('topydo cl help foo > help_cl_cmd_output.txt')
+        help_cl_cmd_output = open('help_cl_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Commandline shortcuts\n',
+                              '\n',
+                              "The commandline, activated when pressing ':', supports the following keys:\n",
+                              '      \n',
+                              '  KEY     DESCRIPTION                              \n',
+                              '    \n',
+                              '  Ctrl-a  Move to the beginning                    \n',
+                              '  Ctrl-e  Move to the end                          \n',
+                              '  Ctrl-u  Delete from the cursor to the beginning  \n',
+                              '  Ctrl-k  Delete from the cursor up to the end     \n',
+                              '\n'], help_cl_cmd_output)
+
+        os.system('topydo clhelp foo > help_cl_cmd_output.txt')
+        help_cl_cmd_output = open('help_cl_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Commandline shortcuts\n',
+                              '\n',
+                              "The commandline, activated when pressing ':', supports the following keys:\n",
+                              '      \n',
+                              '  KEY     DESCRIPTION                              \n',
+                              '    \n',
+                              '  Ctrl-a  Move to the beginning                    \n',
+                              '  Ctrl-e  Move to the end                          \n',
+                              '  Ctrl-u  Delete from the cursor to the beginning  \n',
+                              '  Ctrl-k  Delete from the cursor up to the end     \n',
+                              '\n'], help_cl_cmd_output)
+
         os.remove('help_cl_cmd_output.txt')
 
     def test_helpcommandline_name(self):
