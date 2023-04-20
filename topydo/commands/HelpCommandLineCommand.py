@@ -27,7 +27,9 @@ class HelpCommandLineCommand(Command):
     def usage(self):
         return """\
 Synopsis: help cl
-          helpcl\
+          helpcl
+          cl help
+          clhelp\
 """
 
     def help(self):

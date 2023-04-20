@@ -30,7 +30,9 @@ class HelpColumnActionsCommand(Command):
     def usage(self):
         return """\
 Synopsis: help col
-          helpcol\
+          helpcol
+          col help
+          colhelp\
 """
 
     def help(self):

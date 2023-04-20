@@ -33,7 +33,9 @@ class HelpTodoItemActionsCommand(Command):
     def usage(self):
         return """\
 Synopsis: help item
-          helpitem\
+          helpitem
+          item help
+          itemhelp\
 """
 
     def help(self):

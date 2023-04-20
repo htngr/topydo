@@ -31,7 +31,9 @@ class HelpNavigationCommand(Command):
     def usage(self):
         return """\
 Synopsis: help nav
-          helpnav\
+          helpnav
+          nav help
+          navhelp\
 """
 
     def help(self):

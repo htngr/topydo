@@ -131,6 +131,20 @@ def get_subcommand(p_args):
             except IndexError:
                 # will result in empty result
                 pass
+        elif subcommand in ['cl', 'col', 'item', 'nav']:
+            try:
+                arg = args[1]
+
+                if arg == 'help':
+                    result = import_subcommand(f'help{subcommand}')
+                    args = []
+            except IndexError:
+                # will result in empty result
+                pass
+        elif subcommand in ['clhelp', 'colhelp', 'itemhelp', 'navhelp']:
+            arg = subcommand.replace('help', '')
+            result = import_subcommand(f'help{arg}')
+            args = []
         else:
             p_command = config().default_command()
             if p_command in alias_map:
