@@ -61,6 +61,114 @@ class HelpNavigationCommandTest(CommandTest):
                               '  :                         Focus the commandline to execute custom commands.  \n',
                               '\n'], help_nav_cmd_output)
 
+        os.system('topydo nav help > help_nav_cmd_output.txt')
+        help_nav_cmd_output = open('help_nav_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Navigation\n',
+                              '        \n',
+                              '  KEY         ACTION        DESCRIPTION                                        \n',
+                              '    \n',
+                              '  j or ↓      down          Move one item down                                 \n',
+                              '  k or ↑      up            Move one item up                                   \n',
+                              '  l or →      next_column   Move to next column                                \n',
+                              '  h or ←      prev_column   Move to previous column                            \n',
+                              '  gg or Home  home          Move to top                                        \n',
+                              '  G or End    end           Move to bottom                                     \n',
+                              '  0           first_column  Move to first column                               \n',
+                              '  $           last_column   Move to last column                                \n',
+                              '  :                         Focus the commandline to execute custom commands.  \n',
+                              '\n'], help_nav_cmd_output)
+
+        os.system('topydo navhelp > help_nav_cmd_output.txt')
+        help_nav_cmd_output = open('help_nav_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Navigation\n',
+                              '        \n',
+                              '  KEY         ACTION        DESCRIPTION                                        \n',
+                              '    \n',
+                              '  j or ↓      down          Move one item down                                 \n',
+                              '  k or ↑      up            Move one item up                                   \n',
+                              '  l or →      next_column   Move to next column                                \n',
+                              '  h or ←      prev_column   Move to previous column                            \n',
+                              '  gg or Home  home          Move to top                                        \n',
+                              '  G or End    end           Move to bottom                                     \n',
+                              '  0           first_column  Move to first column                               \n',
+                              '  $           last_column   Move to last column                                \n',
+                              '  :                         Focus the commandline to execute custom commands.  \n',
+                              '\n'], help_nav_cmd_output)
+
+        os.system('topydo help nav foo > help_nav_cmd_output.txt')
+        help_nav_cmd_output = open('help_nav_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Navigation\n',
+                              '        \n',
+                              '  KEY         ACTION        DESCRIPTION                                        \n',
+                              '    \n',
+                              '  j or ↓      down          Move one item down                                 \n',
+                              '  k or ↑      up            Move one item up                                   \n',
+                              '  l or →      next_column   Move to next column                                \n',
+                              '  h or ←      prev_column   Move to previous column                            \n',
+                              '  gg or Home  home          Move to top                                        \n',
+                              '  G or End    end           Move to bottom                                     \n',
+                              '  0           first_column  Move to first column                               \n',
+                              '  $           last_column   Move to last column                                \n',
+                              '  :                         Focus the commandline to execute custom commands.  \n',
+                              '\n'], help_nav_cmd_output)
+
+        os.system('topydo helpnav foo > help_nav_cmd_output.txt')
+        help_nav_cmd_output = open('help_nav_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Navigation\n',
+                              '        \n',
+                              '  KEY         ACTION        DESCRIPTION                                        \n',
+                              '    \n',
+                              '  j or ↓      down          Move one item down                                 \n',
+                              '  k or ↑      up            Move one item up                                   \n',
+                              '  l or →      next_column   Move to next column                                \n',
+                              '  h or ←      prev_column   Move to previous column                            \n',
+                              '  gg or Home  home          Move to top                                        \n',
+                              '  G or End    end           Move to bottom                                     \n',
+                              '  0           first_column  Move to first column                               \n',
+                              '  $           last_column   Move to last column                                \n',
+                              '  :                         Focus the commandline to execute custom commands.  \n',
+                              '\n'], help_nav_cmd_output)
+
+        os.system('topydo nav help foo > help_nav_cmd_output.txt')
+        help_nav_cmd_output = open('help_nav_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Navigation\n',
+                              '        \n',
+                              '  KEY         ACTION        DESCRIPTION                                        \n',
+                              '    \n',
+                              '  j or ↓      down          Move one item down                                 \n',
+                              '  k or ↑      up            Move one item up                                   \n',
+                              '  l or →      next_column   Move to next column                                \n',
+                              '  h or ←      prev_column   Move to previous column                            \n',
+                              '  gg or Home  home          Move to top                                        \n',
+                              '  G or End    end           Move to bottom                                     \n',
+                              '  0           first_column  Move to first column                               \n',
+                              '  $           last_column   Move to last column                                \n',
+                              '  :                         Focus the commandline to execute custom commands.  \n',
+                              '\n'], help_nav_cmd_output)
+
+        os.system('topydo navhelp foo > help_nav_cmd_output.txt')
+        help_nav_cmd_output = open('help_nav_cmd_output.txt').readlines()
+
+        self.assertListEqual(['Navigation\n',
+                              '        \n',
+                              '  KEY         ACTION        DESCRIPTION                                        \n',
+                              '    \n',
+                              '  j or ↓      down          Move one item down                                 \n',
+                              '  k or ↑      up            Move one item up                                   \n',
+                              '  l or →      next_column   Move to next column                                \n',
+                              '  h or ←      prev_column   Move to previous column                            \n',
+                              '  gg or Home  home          Move to top                                        \n',
+                              '  G or End    end           Move to bottom                                     \n',
+                              '  0           first_column  Move to first column                               \n',
+                              '  $           last_column   Move to last column                                \n',
+                              '  :                         Focus the commandline to execute custom commands.  \n',
+                              '\n'], help_nav_cmd_output)
+
         os.remove('help_nav_cmd_output.txt')
 
     def test_helpnavigation_name(self):
