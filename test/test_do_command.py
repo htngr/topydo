@@ -49,7 +49,12 @@ class DoCommandTest(CommandTest):
             "a @test with +project",
         ]
 
+        todos_with_priorities = [
+            '(A) Start a band'
+        ]
+
         self.todolist = TodoList(todos)
+        self.todolist_with_priorities = TodoList(todos_with_priorities)
         self.today = date.today()
         self.tomorrow = self.today + timedelta(1)
         self.yesterday = self.today - timedelta(1)
@@ -510,6 +515,32 @@ The following todo item(s) became active:
         self.assertFalse(self.todolist.dirty)
         self.assertFalse(self.output)
         self.assertEqual(self.errors, command.usage() + "\n")
+
+    def test_keep_priority1(self):
+        config("test/data/keeppriority1.conf")
+
+        command = DoCommand(['1'], self.todolist_with_priorities, self.out, self.error,
+                            _no_prompt)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(1).is_completed())
+        self.assertEqual(self.output, f'Completed: x {self.today} Start a band (A)\n')
+        self.assertFalse(self.errors)
+
+    def test_keep_priority2(self):
+        config("test/data/keeppriority0.conf")
+
+        command = DoCommand(['1'], self.todolist_with_priorities, self.out, self.error,
+                            _no_prompt)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(1).is_completed())
+        self.assertEqual(self.output, f'Completed: x {self.today} Start a band\n')
+        self.assertFalse(self.errors)
 
     def test_do_name(self):
         name = DoCommand.name()
