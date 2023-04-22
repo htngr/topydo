@@ -57,7 +57,7 @@ class HelpCommandLineCommandTest(CommandTest):
         self.assertFalse(self.errors)
 
     def test_help_command_line_command4(self):
-        command = HelpCommandLineCommand(['foo'], None, self.out, self.error)
+        command = HelpCommandLineCommand(None, None, self.out, self.error)
         command.execute()
 
         self.assertEqual(self.output, 'Commandline shortcuts\n'
@@ -74,7 +74,7 @@ class HelpCommandLineCommandTest(CommandTest):
         self.assertFalse(self.errors)
 
     def test_help_command_line_command5(self):
-        command = HelpCommandLineCommand(['foo', 'bar'], None, self.out, self.error)
+        command = HelpCommandLineCommand(['foo'], None, self.out, self.error)
         command.execute()
 
         self.assertEqual(self.output, 'Commandline shortcuts\n'
@@ -91,6 +91,23 @@ class HelpCommandLineCommandTest(CommandTest):
         self.assertFalse(self.errors)
 
     def test_help_command_line_command6(self):
+        command = HelpCommandLineCommand(['foo', 'bar'], None, self.out, self.error)
+        command.execute()
+
+        self.assertEqual(self.output, 'Commandline shortcuts\n'
+                                      '\n'
+                                      "The commandline, activated when pressing ':', supports the following keys:\n"
+                                      '      \n'
+                                      '  KEY     DESCRIPTION                              \n'
+                                      '    \n'
+                                      '  Ctrl-a  Move to the beginning                    \n'
+                                      '  Ctrl-e  Move to the end                          \n'
+                                      '  Ctrl-u  Delete from the cursor to the beginning  \n'
+                                      '  Ctrl-k  Delete from the cursor up to the end     \n'
+                                      '\n')
+        self.assertFalse(self.errors)
+
+    def test_help_command_line_command7(self):
         os.system('topydo help cl > help_cl_cmd_output.txt')
         help_cl_cmd_output = open('help_cl_cmd_output.txt').readlines()
 
@@ -183,7 +200,7 @@ class HelpCommandLineCommandTest(CommandTest):
 
         os.remove('help_cl_cmd_output.txt')
 
-    def test_help_command_line_command7(self):
+    def test_help_command_line_command8(self):
         os.system('topydo cl help > help_cl_cmd_output.txt')
         help_cl_cmd_output = open('help_cl_cmd_output.txt').readlines()
 

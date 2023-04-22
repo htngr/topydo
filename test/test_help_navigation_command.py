@@ -66,7 +66,7 @@ class HelpNavigationCommandTest(CommandTest):
         self.assertFalse(self.errors)
 
     def test_help_navigation_command4(self):
-        command = HelpNavigationCommand(['foo'], None, self.out, self.error)
+        command = HelpNavigationCommand(None, None, self.out, self.error)
         command.execute()
 
         self.assertEqual(self.output, 'Navigation\n'
@@ -86,7 +86,7 @@ class HelpNavigationCommandTest(CommandTest):
         self.assertFalse(self.errors)
 
     def test_help_navigation_command5(self):
-        command = HelpNavigationCommand(['foo', 'bar'], None, self.out, self.error)
+        command = HelpNavigationCommand(['foo'], None, self.out, self.error)
         command.execute()
 
         self.assertEqual(self.output, 'Navigation\n'
@@ -106,6 +106,26 @@ class HelpNavigationCommandTest(CommandTest):
         self.assertFalse(self.errors)
 
     def test_help_navigation_command6(self):
+        command = HelpNavigationCommand(['foo', 'bar'], None, self.out, self.error)
+        command.execute()
+
+        self.assertEqual(self.output, 'Navigation\n'
+                                      '        \n'
+                                      '  KEY         ACTION        DESCRIPTION                                        \n'
+                                      '    \n'
+                                      '  j or ↓      down          Move one item down                                 \n'
+                                      '  k or ↑      up            Move one item up                                   \n'
+                                      '  l or →      next_column   Move to next column                                \n'
+                                      '  h or ←      prev_column   Move to previous column                            \n'
+                                      '  gg or Home  home          Move to top                                        \n'
+                                      '  G or End    end           Move to bottom                                     \n'
+                                      '  0           first_column  Move to first column                               \n'
+                                      '  $           last_column   Move to last column                                \n'
+                                      '  :                         Focus the commandline to execute custom commands.  \n'
+                                      '\n')
+        self.assertFalse(self.errors)
+
+    def test_help_navigation_command7(self):
         os.system('topydo help nav > help_nav_cmd_output.txt')
         help_nav_cmd_output = open('help_nav_cmd_output.txt').readlines()
 
@@ -216,7 +236,7 @@ class HelpNavigationCommandTest(CommandTest):
 
         os.remove('help_nav_cmd_output.txt')
 
-    def test_help_navigation_command7(self):
+    def test_help_navigation_command8(self):
         os.system('topydo nav help > help_nav_cmd_output.txt')
         help_nav_cmd_output = open('help_nav_cmd_output.txt').readlines()
 
