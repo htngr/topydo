@@ -5,11 +5,16 @@ import time
 
 
 class DoNowCommand(Command):
-    def __init__(self, p_args, p_todolist, #pragma: no branch
+    def __init__(self, p_args, p_todolist,  #pragma: no branch
                  p_out=lambda a: None,
                  p_err=lambda a: None,
-                 p_prompt=lambda a: None):
+                 p_prompt=lambda a: None,
+                 testing_timer=False,
+                 testing_value=None):
         super().__init__(p_args, p_todolist, p_out, p_err, p_prompt)
+
+        self.testing_timer = testing_timer
+        self.testing_value = testing_value
 
     def execute(self):
         if not super().execute():
@@ -23,11 +28,14 @@ class DoNowCommand(Command):
 
             min_value = 0 if len(todo.tag_values('min')) == 0 else int(todo.tag_values('min')[0])
             min_elapsed = 0
+            unit_of_time = 1 if self.testing_timer else 60
 
             try:
                 while True:
-                    time.sleep(1 * 60)
+                    time.sleep(1 * unit_of_time)
                     min_elapsed += 1
+                    if self.testing_timer and min_elapsed == self.testing_value:
+                        raise KeyboardInterrupt
             except KeyboardInterrupt:
                 TagCommand([todo_id, 'min', f'{min_value + min_elapsed}'], self.todolist).execute()
                 self.out(f'\n{min_elapsed} MINUTE(S) PASSED\n'
