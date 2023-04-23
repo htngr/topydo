@@ -14,7 +14,7 @@ class HelpNavigationCommand(Command):
             return False
 
         headers = ['Key', 'Action', 'Description']
-        rows = [
+        shortcuts = [
             ['j or ↓', 'down', 'Move one item down'],
             ['k or ↑', 'up', 'Move one item up'],
             ['l or →', 'next_column', 'Move to next column'],
@@ -23,10 +23,11 @@ class HelpNavigationCommand(Command):
             ['G or End', 'end', 'Move to bottom'],
             ['0', 'first_column', 'Move to first column'],
             ['$', 'last_column', 'Move to last column'],
-            [':', '', 'Focus the commandline to execute custom commands.']
+            [':', '', 'Focus the commandline to execute custom commands']
         ]
-        help_text = columnar(rows, headers, no_borders=True)
-        self.out(f'Navigation\n{help_text}')
+        navigation_table = columnar(shortcuts, headers, no_borders=True)
+        self.out(f'Navigation\n'
+                 f'{navigation_table}')
 
     def usage(self):
         return """\

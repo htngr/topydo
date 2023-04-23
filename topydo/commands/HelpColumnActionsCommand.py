@@ -14,7 +14,7 @@ class HelpColumnActionsCommand(Command):
             return False
 
         headers = ['Key', 'Action', 'Description']
-        rows = [
+        shortcuts = [
             ['A', 'append_column', 'Add/append column (at the right)'],
             ['I', 'insert_column', 'Insert new column before the current column'],
             ['E', 'edit_column', 'Edit the current column definition'],
@@ -24,8 +24,9 @@ class HelpColumnActionsCommand(Command):
             ['R', 'swap_right', 'Swap current column with right neighbouring column'],
             ['Ctrl-a', 'mark_all', 'Marks all items in the current column']
         ]
-        help_text = columnar(rows, headers, no_borders=True)
-        self.out(f'Column actions\n{help_text}')
+        column_actions_table = columnar(shortcuts, headers, no_borders=True)
+        self.out(f'Column actions\n'
+                 f'{column_actions_table}')
 
     def usage(self):
         return """\

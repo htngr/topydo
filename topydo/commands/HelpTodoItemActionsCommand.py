@@ -14,21 +14,21 @@ class HelpTodoItemActionsCommand(Command):
             return False
 
         headers = ['Key', 'Action', 'Description']
-        rows = [
+        shortcuts = [
             ['d', 'cmd del {}', "Executes 'del' on highlighted item(s)"],
             ['e', 'cmd edit {}', "Executes 'edit' on highlighted item(s)"],
             ['m', 'mark', 'Mark current item (for performing actions on multiple items simultaneously)'],
-            ['pp<period>', 'postpone', "Executes 'postpone' on the highlighted item(s) with the given period."],
-            ['pr<priority>', 'pri', "Executes 'pri' on the highlighted item(s) with the given priority."],
-            ['ps<period>', 'postpone_s',
-             "Executes 'postpone' in strict mode on the highlighted item(s) with the given period."],
+            ['pp<period>', 'postpone', "Executes 'postpone' on the highlighted item(s) with the given period"],
+            ['pr<priority>', 'pri', "Executes 'pri' on the highlighted item(s) with the given priority"],
+            ['ps<period>', 'postpone_s', "Executes 'postpone' in strict mode on the highlighted item(s) with the given period"],
             ['u', 'cmd revert', "Executes 'revert'"],
             ['x', 'cmd do {}', "Executes 'do' on highlighted item(s)"],
             ['.', 'repeat', "Repeats the last command on the current item. When the last command was entered on the commandline,\n"
                             "that command should have the '{}' placeholder to insert the current item."]
         ]
-        help_text = columnar(rows, headers, no_borders=True)
-        self.out(f'Todo item actions\n{help_text}')
+        todo_item_actions_table = columnar(shortcuts, headers, no_borders=True)
+        self.out(f'Todo item actions\n'
+                 f'{todo_item_actions_table}')
 
     def usage(self):
         return """\

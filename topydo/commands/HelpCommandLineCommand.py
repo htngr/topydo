@@ -14,15 +14,16 @@ class HelpCommandLineCommand(Command):
             return False
 
         headers = ['Key', 'Description']
-        rows = [
+        shortcuts = [
             ['Ctrl-a', 'Move to the beginning'],
             ['Ctrl-e', 'Move to the end'],
             ['Ctrl-u', 'Delete from the cursor to the beginning'],
             ['Ctrl-k', 'Delete from the cursor up to the end']
         ]
-        help_text = columnar(rows, headers, no_borders=True)
-        self.out(f"Commandline shortcuts\n\nThe commandline, activated when pressing ':', supports the following keys:\n{help_text}")
-        # self.out(f'Column actions\n{help_text}')
+        command_line_table = columnar(shortcuts, headers, no_borders=True)
+        self.out(f"Commandline shortcuts\n\n"
+                 f"The commandline, activated when pressing ':', supports the following keys:\n"
+                 f"{command_line_table}")
 
     def usage(self):
         return """\
