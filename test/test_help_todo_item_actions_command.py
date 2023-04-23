@@ -18,11 +18,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                                       '  m             mark         Mark current item (for performing actions on mult  \n'
                                       '                             iple items simultaneously)                         \n'
                                       "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n"
-                                      '                             th the given period.                               \n'
+                                      '                             th the given period                                \n'
                                       "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n"
-                                      '                             e given priority.                                  \n'
+                                      '                             e given priority                                   \n'
                                       "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n"
-                                      '                             hted item(s) with the given period.                \n'
+                                      '                             hted item(s) with the given period                 \n'
                                       "  u             cmd revert   Executes 'revert'                                  \n"
                                       "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n"
                                       '  .             repeat       Repeats the last command on the current item. Whe  \n'
@@ -46,11 +46,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                                       '  m             mark         Mark current item (for performing actions on mult  \n'
                                       '                             iple items simultaneously)                         \n'
                                       "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n"
-                                      '                             th the given period.                               \n'
+                                      '                             th the given period                                \n'
                                       "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n"
-                                      '                             e given priority.                                  \n'
+                                      '                             e given priority                                   \n'
                                       "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n"
-                                      '                             hted item(s) with the given period.                \n'
+                                      '                             hted item(s) with the given period                 \n'
                                       "  u             cmd revert   Executes 'revert'                                  \n"
                                       "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n"
                                       '  .             repeat       Repeats the last command on the current item. Whe  \n'
@@ -74,11 +74,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                                       '  m             mark         Mark current item (for performing actions on mult  \n'
                                       '                             iple items simultaneously)                         \n'
                                       "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n"
-                                      '                             th the given period.                               \n'
+                                      '                             th the given period                                \n'
                                       "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n"
-                                      '                             e given priority.                                  \n'
+                                      '                             e given priority                                   \n'
                                       "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n"
-                                      '                             hted item(s) with the given period.                \n'
+                                      '                             hted item(s) with the given period                 \n'
                                       "  u             cmd revert   Executes 'revert'                                  \n"
                                       "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n"
                                       '  .             repeat       Repeats the last command on the current item. Whe  \n'
@@ -102,11 +102,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                                       '  m             mark         Mark current item (for performing actions on mult  \n'
                                       '                             iple items simultaneously)                         \n'
                                       "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n"
-                                      '                             th the given period.                               \n'
+                                      '                             th the given period                                \n'
                                       "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n"
-                                      '                             e given priority.                                  \n'
+                                      '                             e given priority                                   \n'
                                       "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n"
-                                      '                             hted item(s) with the given period.                \n'
+                                      '                             hted item(s) with the given period                 \n'
                                       "  u             cmd revert   Executes 'revert'                                  \n"
                                       "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n"
                                       '  .             repeat       Repeats the last command on the current item. Whe  \n'
@@ -130,11 +130,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                                       '  m             mark         Mark current item (for performing actions on mult  \n'
                                       '                             iple items simultaneously)                         \n'
                                       "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n"
-                                      '                             th the given period.                               \n'
+                                      '                             th the given period                                \n'
                                       "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n"
-                                      '                             e given priority.                                  \n'
+                                      '                             e given priority                                   \n'
                                       "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n"
-                                      '                             hted item(s) with the given period.                \n'
+                                      '                             hted item(s) with the given period                 \n'
                                       "  u             cmd revert   Executes 'revert'                                  \n"
                                       "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n"
                                       '  .             repeat       Repeats the last command on the current item. Whe  \n'
@@ -158,11 +158,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                                       '  m             mark         Mark current item (for performing actions on mult  \n'
                                       '                             iple items simultaneously)                         \n'
                                       "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n"
-                                      '                             th the given period.                               \n'
+                                      '                             th the given period                                \n'
                                       "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n"
-                                      '                             e given priority.                                  \n'
+                                      '                             e given priority                                   \n'
                                       "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n"
-                                      '                             hted item(s) with the given period.                \n'
+                                      '                             hted item(s) with the given period                 \n'
                                       "  u             cmd revert   Executes 'revert'                                  \n"
                                       "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n"
                                       '  .             repeat       Repeats the last command on the current item. Whe  \n'
@@ -186,11 +186,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                               '  m             mark         Mark current item (for performing actions on mult  \n',
                               '                             iple items simultaneously)                         \n',
                               "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n",
-                              '                             th the given period.                               \n',
+                              '                             th the given period                                \n',
                               "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n",
-                              '                             e given priority.                                  \n',
+                              '                             e given priority                                   \n',
                               "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n",
-                              '                             hted item(s) with the given period.                \n',
+                              '                             hted item(s) with the given period                 \n',
                               "  u             cmd revert   Executes 'revert'                                  \n",
                               "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n",
                               '  .             repeat       Repeats the last command on the current item. Whe  \n',
@@ -212,11 +212,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                               '  m             mark         Mark current item (for performing actions on mult  \n',
                               '                             iple items simultaneously)                         \n',
                               "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n",
-                              '                             th the given period.                               \n',
+                              '                             th the given period                                \n',
                               "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n",
-                              '                             e given priority.                                  \n',
+                              '                             e given priority                                   \n',
                               "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n",
-                              '                             hted item(s) with the given period.                \n',
+                              '                             hted item(s) with the given period                 \n',
                               "  u             cmd revert   Executes 'revert'                                  \n",
                               "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n",
                               '  .             repeat       Repeats the last command on the current item. Whe  \n',
@@ -238,11 +238,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                               '  m             mark         Mark current item (for performing actions on mult  \n',
                               '                             iple items simultaneously)                         \n',
                               "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n",
-                              '                             th the given period.                               \n',
+                              '                             th the given period                                \n',
                               "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n",
-                              '                             e given priority.                                  \n',
+                              '                             e given priority                                   \n',
                               "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n",
-                              '                             hted item(s) with the given period.                \n',
+                              '                             hted item(s) with the given period                 \n',
                               "  u             cmd revert   Executes 'revert'                                  \n",
                               "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n",
                               '  .             repeat       Repeats the last command on the current item. Whe  \n',
@@ -264,11 +264,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                               '  m             mark         Mark current item (for performing actions on mult  \n',
                               '                             iple items simultaneously)                         \n',
                               "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n",
-                              '                             th the given period.                               \n',
+                              '                             th the given period                                \n',
                               "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n",
-                              '                             e given priority.                                  \n',
+                              '                             e given priority                                   \n',
                               "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n",
-                              '                             hted item(s) with the given period.                \n',
+                              '                             hted item(s) with the given period                 \n',
                               "  u             cmd revert   Executes 'revert'                                  \n",
                               "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n",
                               '  .             repeat       Repeats the last command on the current item. Whe  \n',
@@ -290,11 +290,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                               '  m             mark         Mark current item (for performing actions on mult  \n',
                               '                             iple items simultaneously)                         \n',
                               "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n",
-                              '                             th the given period.                               \n',
+                              '                             th the given period                                \n',
                               "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n",
-                              '                             e given priority.                                  \n',
+                              '                             e given priority                                   \n',
                               "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n",
-                              '                             hted item(s) with the given period.                \n',
+                              '                             hted item(s) with the given period                 \n',
                               "  u             cmd revert   Executes 'revert'                                  \n",
                               "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n",
                               '  .             repeat       Repeats the last command on the current item. Whe  \n',
@@ -316,11 +316,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                               '  m             mark         Mark current item (for performing actions on mult  \n',
                               '                             iple items simultaneously)                         \n',
                               "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n",
-                              '                             th the given period.                               \n',
+                              '                             th the given period                                \n',
                               "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n",
-                              '                             e given priority.                                  \n',
+                              '                             e given priority                                   \n',
                               "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n",
-                              '                             hted item(s) with the given period.                \n',
+                              '                             hted item(s) with the given period                 \n',
                               "  u             cmd revert   Executes 'revert'                                  \n",
                               "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n",
                               '  .             repeat       Repeats the last command on the current item. Whe  \n',
@@ -345,11 +345,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                               '  m             mark         Mark current item (for performing actions on mult  \n',
                               '                             iple items simultaneously)                         \n',
                               "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n",
-                              '                             th the given period.                               \n',
+                              '                             th the given period                                \n',
                               "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n",
-                              '                             e given priority.                                  \n',
+                              '                             e given priority                                   \n',
                               "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n",
-                              '                             hted item(s) with the given period.                \n',
+                              '                             hted item(s) with the given period                 \n',
                               "  u             cmd revert   Executes 'revert'                                  \n",
                               "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n",
                               '  .             repeat       Repeats the last command on the current item. Whe  \n',
@@ -371,11 +371,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                               '  m             mark         Mark current item (for performing actions on mult  \n',
                               '                             iple items simultaneously)                         \n',
                               "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n",
-                              '                             th the given period.                               \n',
+                              '                             th the given period                                \n',
                               "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n",
-                              '                             e given priority.                                  \n',
+                              '                             e given priority                                   \n',
                               "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n",
-                              '                             hted item(s) with the given period.                \n',
+                              '                             hted item(s) with the given period                 \n',
                               "  u             cmd revert   Executes 'revert'                                  \n",
                               "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n",
                               '  .             repeat       Repeats the last command on the current item. Whe  \n',
@@ -397,11 +397,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                               '  m             mark         Mark current item (for performing actions on mult  \n',
                               '                             iple items simultaneously)                         \n',
                               "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n",
-                              '                             th the given period.                               \n',
+                              '                             th the given period                                \n',
                               "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n",
-                              '                             e given priority.                                  \n',
+                              '                             e given priority                                   \n',
                               "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n",
-                              '                             hted item(s) with the given period.                \n',
+                              '                             hted item(s) with the given period                 \n',
                               "  u             cmd revert   Executes 'revert'                                  \n",
                               "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n",
                               '  .             repeat       Repeats the last command on the current item. Whe  \n',
@@ -423,11 +423,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                               '  m             mark         Mark current item (for performing actions on mult  \n',
                               '                             iple items simultaneously)                         \n',
                               "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n",
-                              '                             th the given period.                               \n',
+                              '                             th the given period                                \n',
                               "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n",
-                              '                             e given priority.                                  \n',
+                              '                             e given priority                                   \n',
                               "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n",
-                              '                             hted item(s) with the given period.                \n',
+                              '                             hted item(s) with the given period                 \n',
                               "  u             cmd revert   Executes 'revert'                                  \n",
                               "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n",
                               '  .             repeat       Repeats the last command on the current item. Whe  \n',
@@ -449,11 +449,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                               '  m             mark         Mark current item (for performing actions on mult  \n',
                               '                             iple items simultaneously)                         \n',
                               "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n",
-                              '                             th the given period.                               \n',
+                              '                             th the given period                                \n',
                               "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n",
-                              '                             e given priority.                                  \n',
+                              '                             e given priority                                   \n',
                               "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n",
-                              '                             hted item(s) with the given period.                \n',
+                              '                             hted item(s) with the given period                 \n',
                               "  u             cmd revert   Executes 'revert'                                  \n",
                               "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n",
                               '  .             repeat       Repeats the last command on the current item. Whe  \n',
@@ -475,11 +475,11 @@ class HelpTodoItemActionsCommandTest(CommandTest):
                               '  m             mark         Mark current item (for performing actions on mult  \n',
                               '                             iple items simultaneously)                         \n',
                               "  pp<period>    postpone     Executes 'postpone' on the highlighted item(s) wi  \n",
-                              '                             th the given period.                               \n',
+                              '                             th the given period                                \n',
                               "  pr<priority>  pri          Executes 'pri' on the highlighted item(s) with th  \n",
-                              '                             e given priority.                                  \n',
+                              '                             e given priority                                   \n',
                               "  ps<period>    postpone_s   Executes 'postpone' in strict mode on the highlig  \n",
-                              '                             hted item(s) with the given period.                \n',
+                              '                             hted item(s) with the given period                 \n',
                               "  u             cmd revert   Executes 'revert'                                  \n",
                               "  x             cmd do {}    Executes 'do' on highlighted item(s)               \n",
                               '  .             repeat       Repeats the last command on the current item. Whe  \n',
