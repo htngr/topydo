@@ -9,7 +9,9 @@ class DoNowCommandTest(CommandTest):
         super().setUp()
         todos = [
             'Foo',
-            'Bar min:30'
+            'Bar min:30',
+            'Baz',
+            'Qux min:30'
         ]
 
         self.todolist = TodoList(todos)
@@ -35,6 +37,28 @@ class DoNowCommandTest(CommandTest):
                                       'UPDATED TODO: |2| Bar min:32\n')
         self.assertFalse(self.errors)
         self.assertTrue(self.todolist.dirty)
+
+    def test_do_now_command3(self):
+        command = DoNowCommand(['3'], self.todolist, self.out, self.error, None, True, 0)
+        command.execute()
+
+        self.assertEqual(self.todolist.todo(3).source(), 'Baz min:0')
+        self.assertEqual(self.output, 'DOING: Baz\n'
+                                      '\n0 MINUTE(S) PASSED\n'
+                                      'UPDATED TODO: |3| Baz min:0\n')
+        self.assertFalse(self.errors)
+        self.assertTrue(self.todolist.dirty)
+
+    def test_do_now_command4(self):
+        command = DoNowCommand(['4'], self.todolist, self.out, self.error, None, True, 0)
+        command.execute()
+
+        self.assertEqual(self.todolist.todo(4).source(), 'Qux min:30')
+        self.assertEqual(self.output, 'DOING: Qux min:30\n'
+                                      '\n0 MINUTE(S) PASSED\n'
+                                      'UPDATED TODO: |4| Qux min:30\n')
+        self.assertFalse(self.errors)
+        self.assertFalse(self.todolist.dirty)
 
 
 if __name__ == '__main__':
