@@ -139,8 +139,11 @@ def get_subcommand(p_args):
                     result = import_subcommand(f'help{subcommand}')
                     args = []
             except IndexError:
-                # will result in empty result
-                pass
+                p_command = config().default_command()
+                if p_command in alias_map:
+                    result, args = resolve_alias(p_command, args)
+                elif p_command in SUBCOMMAND_MAP:
+                    result = import_subcommand(p_command)
         elif subcommand in ['clhelp', 'colhelp', 'itemhelp', 'navhelp']:
             subcommand = subcommand.replace('help', '')
             result = import_subcommand(f'help{subcommand}')
