@@ -19,6 +19,10 @@ import unittest
 from topydo.Commands import get_subcommand
 from topydo.commands.AddCommand import AddCommand
 from topydo.commands.DeleteCommand import DeleteCommand
+from topydo.commands.HelpColumnActionsCommand import HelpColumnActionsCommand
+from topydo.commands.HelpCommandLineCommand import HelpCommandLineCommand
+from topydo.commands.HelpNavigationCommand import HelpNavigationCommand
+from topydo.commands.HelpTodoItemActionsCommand import HelpTodoItemActionsCommand
 from topydo.commands.ListCommand import ListCommand
 from topydo.commands.TagCommand import TagCommand
 from topydo.lib.Config import ConfigError, config
@@ -37,6 +41,90 @@ class GetSubcommandTest(TopydoTest):
         real_cmd, final_args = get_subcommand(args)
         self.assertTrue(issubclass(real_cmd, AddCommand))
         self.assertEqual(final_args, ["help"])
+
+    def test_cmd_help_col(self):
+        args = ['help', 'col']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpColumnActionsCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['helpcol']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpColumnActionsCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['col', 'help']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpColumnActionsCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['colhelp']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpColumnActionsCommand))
+        self.assertEqual(final_args, [])
+
+    def test_cmd_help_cl(self):
+        args = ['help', 'cl']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpCommandLineCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['helpcl']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpCommandLineCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['cl', 'help']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpCommandLineCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['clhelp']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpCommandLineCommand))
+        self.assertEqual(final_args, [])
+
+    def test_cmd_help_nav(self):
+        args = ['help', 'nav']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpNavigationCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['helpnav']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpNavigationCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['nav', 'help']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpNavigationCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['navhelp']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpNavigationCommand))
+        self.assertEqual(final_args, [])
+
+    def test_cmd_help_item(self):
+        args = ['help', 'item']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpTodoItemActionsCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['helpitem']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpTodoItemActionsCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['item', 'help']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpTodoItemActionsCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['itemhelp']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpTodoItemActionsCommand))
+        self.assertEqual(final_args, [])
 
     def test_alias01(self):
         config("test/data/aliases.conf")
