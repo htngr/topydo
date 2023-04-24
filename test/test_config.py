@@ -83,63 +83,68 @@ class ConfigTest(TopydoTest):
                          bool(int(config().defaults["dep"]["append_parent_contexts"])))
 
     def test_config14(self):
+        """ Bad keep priority switch value. """
+        self.assertEqual(config('test/data/ConfigTest4.conf').keep_priority(),
+                         bool(int(config().defaults['do']['keep_priority'])))
+
+    def test_config15(self):
         """ Bad priority color value. """
         self.assertEqual(config("test/data/ConfigTest4.conf").priority_color('A').color, 6)
         self.assertEqual(config("test/data/ConfigTest4.conf").priority_color('B').color, 3)
         self.assertEqual(config("test/data/ConfigTest4.conf").priority_color('C').color, 4)
 
-    def test_config15(self):
+    def test_config16(self):
         """ Bad project color value. """
         self.assertTrue(config("test/data/ConfigTest4.conf").project_color().is_neutral())
 
-    def test_config16(self):
+    def test_config17(self):
         """ Bad context color value. """
         self.assertTrue(config("test/data/ConfigTest4.conf").context_color().is_neutral())
 
-    def test_config17(self):
+    def test_config18(self):
         """ Bad metadata color value. """
         self.assertTrue(config("test/data/ConfigTest4.conf").metadata_color().is_neutral())
 
-    def test_config18(self):
+    def test_config19(self):
         """ Bad link color value. """
         self.assertTrue(config("test/data/ConfigTest4.conf").link_color().is_neutral())
 
     # the test needs to be of the internal function _str_to_dict
-    def test_config19(self):
+    def test_config20(self):
         """ No priority color value. """
         self.assertEqual(config("test/data/ConfigTest4.conf").priority_color('A').color, 6)
         self.assertEqual(config("test/data/ConfigTest4.conf").priority_color('B').color, 3)
         self.assertEqual(config("test/data/ConfigTest4.conf").priority_color('C').color, 4)
 
-    def test_config20(self):
+    def test_config21(self):
         """ No project color value. """
         self.assertEqual(config("test/data/ConfigTest5.conf").project_color().color, 1)
 
-    def test_config21(self):
+    def test_config22(self):
         """ No context color value. """
         self.assertEqual(config("test/data/ConfigTest5.conf").context_color().color, 5)
 
-    def test_config22(self):
+    def test_config23(self):
         """ No metadata color value. """
         self.assertEqual(config("test/data/ConfigTest5.conf").metadata_color().color, 2)
 
-    def test_config23(self):
+    def test_config24(self):
         """ No link color value. """
         self.assertEqual(config("test/data/ConfigTest5.conf").link_color().color, 6)
 
-    def test_config24(self):
+    def test_config25(self):
         """ No focus background color value. """
         self.assertEqual(config("test/data/ConfigTest5.conf").focus_background_color().color, 7)
 
-    def test_config25(self):
+    def test_config26(self):
         """ No mark background color value. """
         self.assertEqual(config("test/data/ConfigTest5.conf").marked_background_color().color, 4)
 
-    def test_config26(self):
+    def test_config27(self):
         self.assertTrue(config("test/data/ConfigTest4.conf").focus_background_color().is_neutral())
         self.assertTrue(config("test/data/ConfigTest4.conf").marked_background_color().is_neutral())
 
-    def test_config27(self):
+    def test_config28(self):
         """ column_keymap test. """
         keymap, keystates = config("test/data/ConfigTest6.conf").column_keymap()
 
@@ -165,7 +170,7 @@ class ConfigTest(TopydoTest):
         self.assertNotIn('<Esc', keystates)
         self.assertIn('<Esc>', keystates)
 
-    def test_config28(self):
+    def test_config29(self):
         """ test duplicates. """
         keymap, _ = config("test/data/ConfigTest7.conf").column_keymap()
 
