@@ -61,5 +61,23 @@ class DoNowCommandTest(CommandTest):
         self.assertFalse(self.todolist.dirty)
 
 
+    def test_do_now_command5(self):
+        command = DoNowCommand([], self.todolist, self.out, self.error)
+        command.execute()
+
+        self.assertFalse(self.output)
+        self.assertEqual(self.errors, command.usage() + '\n')
+        self.assertFalse(self.todolist.dirty)
+
+
+    def test_do_now_command6(self):
+        command = DoNowCommand(['5'], self.todolist, self.out, self.error)
+        command.execute()
+
+        self.assertFalse(self.output)
+        self.assertEqual(self.errors, "Invalid todo number.\n")
+        self.assertFalse(self.todolist.dirty)
+
+
 if __name__ == '__main__':
     unittest.main()
