@@ -87,6 +87,9 @@ class ConfigTest(TopydoTest):
         self.assertEqual(config('test/data/ConfigTest4.conf').keep_priority(),
                          bool(int(config().defaults['do']['keep_priority'])))
 
+        self.assertEqual(config('test/data/keeppriority1.conf').keep_priority(), True)
+        self.assertEqual(config('test/data/keeppriority0.conf').keep_priority(), False)
+
     def test_config15(self):
         """ Bad priority color value. """
         self.assertEqual(config("test/data/ConfigTest4.conf").priority_color('A').color, 6)
