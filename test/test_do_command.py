@@ -686,6 +686,96 @@ The following todo item(s) became active:
                                       f'|  2| (B) Foo id:1\n')
         self.assertFalse(self.errors)
 
+    def test_keep_priority_multi_do1(self):
+        config('test/data/keeppriority1.conf')
+
+        command = DoCommand(['2', '4'], self.todolist_with_priorities, self.out, self.error, _yes_prompt)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(2).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(3).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(4).is_completed())
+        self.assertEqual(self.output, f'|  3| (B) Bar p:1\n'
+                                      f'|  4| (B) Baz p:1\n'
+                                      f'Completed: x (B) {self.today} Bar p:1\n'
+                                      f'Completed: x (B) {self.today} Baz p:1\n'
+                                      f'Completed: x (B) {self.today} Foo id:1\n')
+
+    def test_keep_priority_multi_do2(self):
+        config('test/data/keeppriority0.conf')
+
+        command = DoCommand(['2', '4'], self.todolist_with_priorities, self.out, self.error, _yes_prompt)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(2).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(3).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(4).is_completed())
+        self.assertEqual(self.output, f'|  3| (B) Bar p:1\n'
+                                      f'|  4| (B) Baz p:1\n'
+                                      f'Completed: x {self.today} Bar p:1\n'
+                                      f'Completed: x {self.today} Baz p:1\n'
+                                      f'Completed: x {self.today} Foo id:1\n')
+
+    def test_keep_priority_multi_do3(self):
+        config('test/data/keeppriority1.conf')
+
+        command = DoCommand(['2', '4'], self.todolist_with_priorities, self.out, self.error, _no_prompt)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(2).is_completed())
+        self.assertFalse(self.todolist_with_priorities.todo(3).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(4).is_completed())
+        self.assertEqual(self.output, f'|  3| (B) Bar p:1\n'
+                                      f'|  4| (B) Baz p:1\n'
+                                      f'Completed: x (B) {self.today} Foo id:1\n'
+                                      f'Completed: x (B) {self.today} Baz p:1\n')
+        self.assertFalse(self.errors)
+
+    def test_keep_priority_multi_do4(self):
+        config('test/data/keeppriority0.conf')
+
+        command = DoCommand(['2', '4'], self.todolist_with_priorities, self.out, self.error, _no_prompt)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(2).is_completed())
+        self.assertFalse(self.todolist_with_priorities.todo(3).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(4).is_completed())
+        self.assertEqual(self.output, f'|  3| (B) Bar p:1\n'
+                                      f'|  4| (B) Baz p:1\n'
+                                      f'Completed: x {self.today} Foo id:1\n'
+                                      f'Completed: x {self.today} Baz p:1\n')
+        self.assertFalse(self.errors)
+
+    def test_keep_priority_multi_do5(self):
+        config('test/data/keeppriority1.conf')
+
+        command = DoCommand(['4', '4'], self.todolist_with_priorities, self.out, self.error, _no_prompt)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(4).is_completed())
+        self.assertEqual(self.output, f'Completed: x (B) {self.today} Baz p:1\n')
+
+    def test_keep_priority_multi_do6(self):
+        config('test/data/keeppriority0.conf')
+
+        command = DoCommand(['4', '4'], self.todolist_with_priorities, self.out, self.error, _no_prompt)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(4).is_completed())
+        self.assertEqual(self.output, f'Completed: x {self.today} Baz p:1\n')
+
     def test_do_name(self):
         name = DoCommand.name()
 
