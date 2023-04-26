@@ -60,7 +60,6 @@ class DoNowCommandTest(CommandTest):
         self.assertFalse(self.errors)
         self.assertFalse(self.todolist.dirty)
 
-
     def test_do_now_command5(self):
         command = DoNowCommand([], self.todolist, self.out, self.error)
         command.execute()
@@ -69,13 +68,32 @@ class DoNowCommandTest(CommandTest):
         self.assertEqual(self.errors, command.usage() + '\n')
         self.assertFalse(self.todolist.dirty)
 
-
     def test_do_now_command6(self):
         command = DoNowCommand(['5'], self.todolist, self.out, self.error)
         command.execute()
 
         self.assertFalse(self.output)
         self.assertEqual(self.errors, "Invalid todo number.\n")
+        self.assertFalse(self.todolist.dirty)
+
+    def test_do_now_command7(self):
+        command = DoNowCommand([''], self.todolist, self.out, self.error)
+        command.execute()
+
+        self.assertFalse(self.output)
+        self.assertEqual(self.errors, "Invalid todo number.\n")
+        self.assertFalse(self.todolist.dirty)
+
+    def test_do_now_command8(self):
+        command = DoNowCommand([None], self.todolist, self.out, self.error)
+
+        with self.assertRaises(TypeError) as error:
+            command.execute()
+
+        self.assertEquals(str(error.exception),
+                          "int() argument must be a string, a bytes-like object or a real number, not 'NoneType'")
+        self.assertFalse(self.output)
+        self.assertFalse(self.errors)
         self.assertFalse(self.todolist.dirty)
 
 
