@@ -314,7 +314,7 @@ class TodoBaseTester(TopydoTest):
         todo = TodoBase('(A) Foo')
         todo.set_completed()
 
-        self.assertEqual(todo.src, f'x {date.today()} (A) Foo')
+        self.assertEqual(todo.src, f'x (A) {date.today()} Foo')
 
     def test_set_complete8(self):
         config('test/data/keeppriority0.conf')

@@ -529,7 +529,7 @@ The following todo item(s) became active:
 
         self.assertTrue(self.todolist_with_priorities.dirty)
         self.assertTrue(self.todolist_with_priorities.todo(1).is_completed())
-        self.assertEqual(self.output, f'Completed: x {self.today} (A) Start a band\n')
+        self.assertEqual(self.output, f'Completed: x (A) {self.today} Start a band\n')
         self.assertFalse(self.errors)
 
     def test_keep_priority_do2(self):
@@ -558,9 +558,9 @@ The following todo item(s) became active:
         self.assertFalse(self.todolist_with_priorities.todo(5).is_completed())
         self.assertEqual(self.output, f'|  3| (B) Bar p:1\n'
                                       f'|  4| (B) Baz p:1\n'
-                                      f'Completed: x {self.today} (B) Bar p:1\n'
-                                      f'Completed: x {self.today} (B) Baz p:1\n'
-                                      f'Completed: x {self.today} (B) Foo id:1\n')
+                                      f'Completed: x (B) {self.today} Bar p:1\n'
+                                      f'Completed: x (B) {self.today} Baz p:1\n'
+                                      f'Completed: x (B) {self.today} Foo id:1\n')
         self.assertFalse(self.errors)
 
     def test_keep_priority_do_subtasks2(self):
@@ -595,7 +595,7 @@ The following todo item(s) became active:
         self.assertFalse(self.todolist_with_priorities.todo(4).is_completed())
         self.assertEqual(self.output, f'|  3| (B) Bar p:1\n'
                                       f'|  4| (B) Baz p:1\n'
-                                      f'Completed: x {self.today} (B) Foo id:1\n')
+                                      f'Completed: x (B) {self.today} Foo id:1\n')
         self.assertFalse(self.errors)
 
     def test_keep_priority_do_subtasks4(self):
@@ -645,7 +645,7 @@ The following todo item(s) became active:
         command.execute()
         command.execute_post_archive_actions()
 
-        self.assertEqual(self.output, f'Completed: x {self.today} (B) Bar p:1\n')
+        self.assertEqual(self.output, f'Completed: x (B) {self.today} Bar p:1\n')
         self.assertFalse(self.errors)
 
         command = DoCommand(['4'], self.todolist_with_priorities, self.out, self.error)
@@ -656,8 +656,8 @@ The following todo item(s) became active:
         self.assertFalse(self.todolist_with_priorities.todo(2).is_completed())
         self.assertTrue(self.todolist_with_priorities.todo(3).is_completed())
         self.assertTrue(self.todolist_with_priorities.todo(4).is_completed())
-        self.assertEqual(self.output, f'Completed: x {self.today} (B) Bar p:1\n'
-                                      f'Completed: x {self.today} (B) Baz p:1\n'
+        self.assertEqual(self.output, f'Completed: x (B) {self.today} Bar p:1\n'
+                                      f'Completed: x (B) {self.today} Baz p:1\n'
                                       f'The following todo item(s) became active:\n'
                                       f'|  2| (B) Foo id:1\n')
         self.assertFalse(self.errors)
