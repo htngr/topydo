@@ -21,6 +21,7 @@ import unittest
 from datetime import date, timedelta
 
 from topydo.lib.TodoBase import TodoBase
+from topydo.lib.Config import config
 
 from .topydo_testcase import TopydoTest
 
@@ -306,6 +307,38 @@ class TodoBaseTester(TopydoTest):
         todo.set_completed(yesterday)
 
         self.assertEqual(todo.src, "x {} Foo".format(yesterday.isoformat()))
+
+    def test_set_complete7(self):
+        config('test/data/keeppriority1.conf')
+
+        todo = TodoBase('(A) Foo')
+        todo.set_completed()
+
+        self.assertEqual(todo.src, f'x {date.today()} (A) Foo')
+
+    def test_set_complete8(self):
+        config('test/data/keeppriority0.conf')
+
+        todo = TodoBase('(A) Foo')
+        todo.set_completed()
+
+        self.assertEqual(todo.src, f'x {date.today()} Foo')
+
+    def test_set_complete9(self):
+        config('test/data/keeppriority1.conf')
+
+        todo = TodoBase('Bar')
+        todo.set_completed()
+
+        self.assertEqual(todo.src, f'x {date.today()} Bar')
+
+    def test_set_complete10(self):
+        config('test/data/keeppriority0.conf')
+
+        todo = TodoBase('Bar')
+        todo.set_completed()
+
+        self.assertEqual(todo.src, f'x {date.today()} Bar')
 
     def test_set_source_text(self):
         todo = TodoBase("(B) Foo")
