@@ -21,8 +21,8 @@ class DoNowCommandTest(CommandTest):
         command.execute()
 
         self.assertEqual(self.todolist.todo(1).source(), 'Foo min:1')
-        self.assertEqual(self.output, 'DOING: Foo\n'
-                                      '\n1 MINUTE(S) PASSED\n'
+        self.assertEqual(self.output, 'WORKING ON: Foo\n'
+                                      '\nMINUTE(S) PASSED: 1\n'
                                       'UPDATED TODO: |1| Foo min:1\n')
         self.assertFalse(self.errors)
         self.assertTrue(self.todolist.dirty)
@@ -32,8 +32,8 @@ class DoNowCommandTest(CommandTest):
         command.execute()
 
         self.assertEqual(self.todolist.todo(2).source(), 'Bar min:32')
-        self.assertEqual(self.output, 'DOING: Bar min:30\n'
-                                      '\n2 MINUTE(S) PASSED\n'
+        self.assertEqual(self.output, 'WORKING ON: Bar min:30\n'
+                                      '\nMINUTE(S) PASSED: 2\n'
                                       'UPDATED TODO: |2| Bar min:32\n')
         self.assertFalse(self.errors)
         self.assertTrue(self.todolist.dirty)
@@ -43,8 +43,8 @@ class DoNowCommandTest(CommandTest):
         command.execute()
 
         self.assertEqual(self.todolist.todo(3).source(), 'Baz min:0')
-        self.assertEqual(self.output, 'DOING: Baz\n'
-                                      '\n0 MINUTE(S) PASSED\n'
+        self.assertEqual(self.output, 'WORKING ON: Baz\n'
+                                      '\nMINUTE(S) PASSED: 0\n'
                                       'UPDATED TODO: |3| Baz min:0\n')
         self.assertFalse(self.errors)
         self.assertTrue(self.todolist.dirty)
@@ -54,8 +54,8 @@ class DoNowCommandTest(CommandTest):
         command.execute()
 
         self.assertEqual(self.todolist.todo(4).source(), 'Qux min:30')
-        self.assertEqual(self.output, 'DOING: Qux min:30\n'
-                                      '\n0 MINUTE(S) PASSED\n'
+        self.assertEqual(self.output, 'WORKING ON: Qux min:30\n'
+                                      '\nMINUTE(S) PASSED: 0\n'
                                       'UPDATED TODO: |4| Qux min:30\n')
         self.assertFalse(self.errors)
         self.assertFalse(self.todolist.dirty)
