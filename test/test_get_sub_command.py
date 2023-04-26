@@ -21,6 +21,7 @@ from topydo.commands.AddCommand import AddCommand
 from topydo.commands.DeleteCommand import DeleteCommand
 from topydo.commands.ListCommand import ListCommand
 from topydo.commands.TagCommand import TagCommand
+from topydo.commands.DoNowCommand import DoNowCommand
 from topydo.lib.Config import ConfigError, config
 
 from .topydo_testcase import TopydoTest
@@ -31,6 +32,12 @@ class GetSubcommandTest(TopydoTest):
         args = ["add"]
         real_cmd, _ = get_subcommand(args)
         self.assertTrue(issubclass(real_cmd, AddCommand))
+
+    def test_donow_cmd(self):
+        args = ['donow', '1']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, DoNowCommand))
+        self.assertEqual(final_args, ['1'])
 
     def test_cmd_help(self):
         args = ["help", "add"]
