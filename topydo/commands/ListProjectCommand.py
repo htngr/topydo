@@ -31,9 +31,10 @@ class ListProjectCommand(Command):
 
         for project in sorted(self.todolist.projects(), key=lambda s: s.lower()):
             self.out(project)
-
     def usage(self):
         return """Synopsis: lsprj"""
 
     def help(self):
         return """Lists all projects in the todo list."""
+    def filter(self):
+
