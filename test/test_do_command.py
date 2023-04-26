@@ -638,6 +638,54 @@ The following todo item(s) became active:
         self.assertEqual(self.output, f'Completed: x {self.today} Go to the gym due:2023-04-21\n')
         self.assertFalse(self.errors)
 
+    def test_keep_priority_activated_todos1(self):
+        config('test/data/keeppriority1.conf')
+
+        command = DoCommand(['3'], self.todolist_with_priorities, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertEqual(self.output, f'Completed: x {self.today} (B) Bar p:1\n')
+        self.assertFalse(self.errors)
+
+        command = DoCommand(['4'], self.todolist_with_priorities, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertFalse(self.todolist_with_priorities.todo(2).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(3).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(4).is_completed())
+        self.assertEqual(self.output, f'Completed: x {self.today} (B) Bar p:1\n'
+                                      f'Completed: x {self.today} (B) Baz p:1\n'
+                                      f'The following todo item(s) became active:\n'
+                                      f'|  2| (B) Foo id:1\n')
+        self.assertFalse(self.errors)
+
+    def test_keep_priority_activated_todos2(self):
+        config('test/data/keeppriority0.conf')
+
+        command = DoCommand(['3'], self.todolist_with_priorities, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertEqual(self.output, f'Completed: x {self.today} Bar p:1\n')
+        self.assertFalse(self.errors)
+
+        command = DoCommand(['4'], self.todolist_with_priorities, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertFalse(self.todolist_with_priorities.todo(2).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(3).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(4).is_completed())
+        self.assertEqual(self.output, f'Completed: x {self.today} Bar p:1\n'
+                                      f'Completed: x {self.today} Baz p:1\n'
+                                      f'The following todo item(s) became active:\n'
+                                      f'|  2| (B) Foo id:1\n')
+        self.assertFalse(self.errors)
+
     def test_do_name(self):
         name = DoCommand.name()
 
