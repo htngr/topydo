@@ -205,15 +205,15 @@ class TodoBase(object):
         Sets the completed flag and sets the completion date to today.
         """
         if not self.is_completed():
-            priority = '' if not config().keep_priority() or self.priority() is None else f' ({self.priority()})'
+            priority = ' ' if not config().keep_priority() or self.priority() is None else f' ({self.priority()}) '
             self.set_priority(None)
 
             self.fields['completed'] = True
             self.fields['completionDate'] = p_completion_date
 
             self.src = re.sub(r'^(\([A-Z]\) )?',
-                              'x ' + p_completion_date.isoformat() + ' ',
-                              self.src + priority)
+                              'x ' + p_completion_date.isoformat() + priority,
+                              self.src)
 
     def set_creation_date(self, p_date=date.today()):
         """

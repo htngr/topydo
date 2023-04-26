@@ -520,7 +520,7 @@ The following todo item(s) became active:
         self.assertFalse(self.output)
         self.assertEqual(self.errors, command.usage() + "\n")
 
-    def test_keep_priority1(self):
+    def test_keep_priority_do1(self):
         config('test/data/keeppriority1.conf')
 
         command = DoCommand(['1'], self.todolist_with_priorities, self.out, self.error, _no_prompt)
@@ -529,10 +529,10 @@ The following todo item(s) became active:
 
         self.assertTrue(self.todolist_with_priorities.dirty)
         self.assertTrue(self.todolist_with_priorities.todo(1).is_completed())
-        self.assertEqual(self.output, f'Completed: x {self.today} Start a band (A)\n')
+        self.assertEqual(self.output, f'Completed: x {self.today} (A) Start a band\n')
         self.assertFalse(self.errors)
 
-    def test_keep_priority2(self):
+    def test_keep_priority_do2(self):
         config('test/data/keeppriority0.conf')
 
         command = DoCommand(['1'], self.todolist_with_priorities, self.out, self.error, _no_prompt)
@@ -544,7 +544,7 @@ The following todo item(s) became active:
         self.assertEqual(self.output, f'Completed: x {self.today} Start a band\n')
         self.assertFalse(self.errors)
 
-    def test_keep_priority3(self):
+    def test_keep_priority_do_subtasks1(self):
         config('test/data/keeppriority1.conf')
 
         command = DoCommand(['2'], self.todolist_with_priorities, self.out, self.error, _yes_prompt)
@@ -558,12 +558,12 @@ The following todo item(s) became active:
         self.assertFalse(self.todolist_with_priorities.todo(5).is_completed())
         self.assertEqual(self.output, f'|  3| (B) Bar p:1\n'
                                       f'|  4| (B) Baz p:1\n'
-                                      f'Completed: x {self.today} Bar p:1 (B)\n'
-                                      f'Completed: x {self.today} Baz p:1 (B)\n'
-                                      f'Completed: x {self.today} Foo id:1 (B)\n')
+                                      f'Completed: x {self.today} (B) Bar p:1\n'
+                                      f'Completed: x {self.today} (B) Baz p:1\n'
+                                      f'Completed: x {self.today} (B) Foo id:1\n')
         self.assertFalse(self.errors)
 
-    def test_keep_priority4(self):
+    def test_keep_priority_do_subtasks2(self):
         config('test/data/keeppriority0.conf')
 
         command = DoCommand(['2'], self.todolist_with_priorities, self.out, self.error, _yes_prompt)
@@ -582,7 +582,7 @@ The following todo item(s) became active:
                                       f'Completed: x {self.today} Foo id:1\n')
         self.assertFalse(self.errors)
 
-    def test_keep_priority5(self):
+    def test_keep_priority_do_subtasks3(self):
         config('test/data/keeppriority1.conf')
 
         command = DoCommand(['2'], self.todolist_with_priorities, self.out, self.error, _no_prompt)
@@ -595,10 +595,10 @@ The following todo item(s) became active:
         self.assertFalse(self.todolist_with_priorities.todo(4).is_completed())
         self.assertEqual(self.output, f'|  3| (B) Bar p:1\n'
                                       f'|  4| (B) Baz p:1\n'
-                                      f'Completed: x {self.today} Foo id:1 (B)\n')
+                                      f'Completed: x {self.today} (B) Foo id:1\n')
         self.assertFalse(self.errors)
 
-    def test_keep_priority6(self):
+    def test_keep_priority_do_subtasks4(self):
         config('test/data/keeppriority0.conf')
 
         command = DoCommand(['2'], self.todolist_with_priorities, self.out, self.error, _no_prompt)
@@ -614,7 +614,7 @@ The following todo item(s) became active:
                                       f'Completed: x {self.today} Foo id:1\n')
         self.assertFalse(self.errors)
 
-    def test_keep_priority7(self):
+    def test_keep_priority_no_priority1(self):
         config('test/data/keeppriority1.conf')
 
         command = DoCommand(['5'], self.todolist_with_priorities, self.out, self.error, _no_prompt)
@@ -626,7 +626,7 @@ The following todo item(s) became active:
         self.assertEqual(self.output, f'Completed: x {self.today} Go to the gym due:2023-04-21\n')
         self.assertFalse(self.errors)
 
-    def test_keep_priority8(self):
+    def test_keep_priority_no_priority2(self):
         config('test/data/keeppriority0.conf')
 
         command = DoCommand(['5'], self.todolist_with_priorities, self.out, self.error, _no_prompt)
@@ -637,7 +637,7 @@ The following todo item(s) became active:
         self.assertTrue(self.todolist_with_priorities.todo(5).is_completed())
         self.assertEqual(self.output, f'Completed: x {self.today} Go to the gym due:2023-04-21\n')
         self.assertFalse(self.errors)
-        
+
     def test_do_name(self):
         name = DoCommand.name()
 
