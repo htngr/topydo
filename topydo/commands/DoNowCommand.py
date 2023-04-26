@@ -26,9 +26,6 @@ class DoNowCommand(Command):
         min_elapsed = 0
         unit_of_time = 1 if self.testing else 60
 
-        if self.testing and self.testing_value == 0:
-            raise KeyboardInterrupt
-
         try:
             todo_id = self.argument(0)
             todo = self.todolist.todo(todo_id)
@@ -36,6 +33,9 @@ class DoNowCommand(Command):
             self.out(f'WORKING ON: {self.printer.print_todo(todo)}')
 
             min_value = 0 if len(todo.tag_values('min')) == 0 else int(todo.tag_values('min')[0])
+
+            if self.testing and self.testing_value == 0:
+                raise KeyboardInterrupt
 
             while True:
                 time.sleep(1 * unit_of_time)
