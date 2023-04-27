@@ -68,6 +68,46 @@ class GetSubcommandTest(TopydoTest):
         self.assertTrue(issubclass(real_cmd, ListCommand))
         self.assertEqual(final_args, ['col'])
 
+        args = ['help', 'col', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpColumnActionsCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['helpcol', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpColumnActionsCommand))
+        self.assertEqual(final_args, ['foo'])
+
+        args = ['col', 'help', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpColumnActionsCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['colhelp', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpColumnActionsCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['foo', 'help', 'col']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'help', 'col'])
+
+        args = ['foo', 'helpcol']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'helpcol'])
+
+        args = ['foo', 'col', 'help']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'col', 'help'])
+
+        args = ['foo', 'colhelp']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'colhelp'])
+
     def test_cmd_help_cl(self):
         args = ['help', 'cl']
         real_cmd, final_args = get_subcommand(args)
@@ -93,6 +133,46 @@ class GetSubcommandTest(TopydoTest):
         real_cmd, final_args = get_subcommand(args)
         self.assertTrue(issubclass(real_cmd, ListCommand))
         self.assertEqual(final_args, ['cl'])
+
+        args = ['help', 'cl', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpCommandLineCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['helpcl', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpCommandLineCommand))
+        self.assertEqual(final_args, ['foo'])
+
+        args = ['cl', 'help', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpCommandLineCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['clhelp', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpCommandLineCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['foo', 'help', 'cl']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'help', 'cl'])
+
+        args = ['foo', 'helpcl']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'helpcl'])
+
+        args = ['foo', 'cl', 'help']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'cl', 'help'])
+
+        args = ['foo', 'clhelp']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'clhelp'])
 
     def test_cmd_help_nav(self):
         args = ['help', 'nav']
@@ -120,6 +200,46 @@ class GetSubcommandTest(TopydoTest):
         self.assertTrue(issubclass(real_cmd, ListCommand))
         self.assertEqual(final_args, ['nav'])
 
+        args = ['help', 'nav', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpNavigationCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['helpnav', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpNavigationCommand))
+        self.assertEqual(final_args, ['foo'])
+
+        args = ['nav', 'help', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpNavigationCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['navhelp', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpNavigationCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['foo', 'help', 'nav']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'help', 'nav'])
+
+        args = ['foo', 'helpnav']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'helpnav'])
+
+        args = ['foo', 'nav', 'help']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'nav', 'help'])
+
+        args = ['foo', 'navhelp']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'navhelp'])
+
     def test_cmd_help_item(self):
         args = ['help', 'item']
         real_cmd, final_args = get_subcommand(args)
@@ -145,6 +265,46 @@ class GetSubcommandTest(TopydoTest):
         real_cmd, final_args = get_subcommand(args)
         self.assertTrue(issubclass(real_cmd, ListCommand))
         self.assertEqual(final_args, ['item'])
+
+        args = ['help', 'item', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpTodoItemActionsCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['helpitem', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpTodoItemActionsCommand))
+        self.assertEqual(final_args, ['foo'])
+
+        args = ['item', 'help', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpTodoItemActionsCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['itemhelp', 'foo']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, HelpTodoItemActionsCommand))
+        self.assertEqual(final_args, [])
+
+        args = ['foo', 'help', 'item']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'help', 'item'])
+
+        args = ['foo', 'helpitem']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'helpitem'])
+
+        args = ['foo', 'item', 'help']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'item', 'help'])
+
+        args = ['foo', 'itemhelp']
+        real_cmd, final_args = get_subcommand(args)
+        self.assertTrue(issubclass(real_cmd, ListCommand))
+        self.assertEqual(final_args, ['foo', 'itemhelp'])
 
     def test_alias01(self):
         config("test/data/aliases.conf")
