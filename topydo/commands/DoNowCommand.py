@@ -20,15 +20,15 @@ class DoNowCommand(Command):
         if not super().execute():
             return False
 
-        todo_id = None
+        todo_number = None
         todo = None
         min_value = None
         min_elapsed = 0
         unit_of_time = 1 if self.testing else 60
 
         try:
-            todo_id = self.argument(0)
-            todo = self.todolist.todo(todo_id)
+            todo_number = self.argument(0)
+            todo = self.todolist.todo(todo_number)
 
             self.out(f'WORKING ON: {self.printer.print_todo(todo)}')
 
@@ -43,9 +43,9 @@ class DoNowCommand(Command):
                 if self.testing and min_elapsed == self.testing_value:
                     raise KeyboardInterrupt
         except KeyboardInterrupt:
-            TagCommand([todo_id, 'min', f'{min_value + min_elapsed}'], self.todolist).execute()
+            TagCommand([todo_number, 'min', f'{min_value + min_elapsed}'], self.todolist).execute()
             self.out(f'\nMINUTE(S) PASSED: {min_elapsed}\n'
-                     f'UPDATED TODO: |{todo_id}| {self.printer.print_todo(todo)}')
+                     f'UPDATED TODO: |{todo_number}| {self.printer.print_todo(todo)}')
         except InvalidCommandArgument:
             self.error(self.usage())
         except InvalidTodoException:
