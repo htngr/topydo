@@ -339,7 +339,7 @@ class UIApplication(CLIApplicationBase):
 
         env_args = (self.todolist, p_output, self._output, self._input)
         ids = None
-
+        #THIS IS A TEST
         if '{}' in args:
             if self._has_marked_todos():
                 ids = self.marked_todos
