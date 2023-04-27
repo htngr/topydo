@@ -111,6 +111,29 @@ class DoNowCommandTest(CommandTest):
         self.assertFalse(self.errors)
         self.assertFalse(self.todolist.dirty)
 
+    def test_do_now_command11(self):
+        command = DoNowCommand(None, self.todolist, self.out, self.error)
+
+        with self.assertRaises(TypeError) as error:
+            command.execute()
+
+        self.assertEquals(str(error.exception), "'NoneType' object is not subscriptable")
+        self.assertFalse(self.output)
+        self.assertFalse(self.errors)
+        self.assertFalse(self.todolist.dirty)
+
+    def test_donow_name(self):
+        name = DoNowCommand.name()
+
+        self.assertEqual(name, 'donow')
+
+    def test_help(self):
+        command = DoNowCommand(['help'], None, self.out, self.error)
+        command.execute()
+
+        self.assertEqual(self.output, '')
+        self.assertEqual(self.errors, command.usage() + '\n\n' + command.help() + '\n'
+
 
 if __name__ == '__main__':
     unittest.main()
