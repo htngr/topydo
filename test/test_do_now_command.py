@@ -132,7 +132,7 @@ class DoNowCommandTest(CommandTest):
         command.execute()
 
         self.assertEqual(self.output, '')
-        self.assertEqual(self.errors, command.usage() + '\n\n' + command.help() + '\n'
+        self.assertEqual(self.errors, command.usage() + '\n\n' + command.help() + '\n')
 
 
 if __name__ == '__main__':
