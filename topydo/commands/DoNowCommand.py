@@ -24,7 +24,6 @@ class DoNowCommand(Command):
         todo = None
         min_value = None
         min_elapsed = 0
-        unit_of_time = 1 if self.testing else 60
 
         try:
             todo_number = self.argument(0)
@@ -33,6 +32,7 @@ class DoNowCommand(Command):
             self.out(f'WORKING ON: {self.printer.print_todo(todo)}')
 
             min_value = 0 if len(todo.tag_values('min')) == 0 else int(todo.tag_values('min')[0])
+            unit_of_time = 1 if self.testing else 60
 
             if self.testing and self.testing_value == 0:
                 raise KeyboardInterrupt
@@ -55,7 +55,4 @@ class DoNowCommand(Command):
         return """Synopsis: donow <NUMBER>"""
 
     def help(self):
-        return """\
-Tracks total time in minutes spent on the todo item specified by NUMBER.
-Timer is stopped using CTRL+C.\
-"""
+        return """Tracks total time in minutes spent on the todo item specified by NUMBER. Timer is stopped using CTRL+C."""
