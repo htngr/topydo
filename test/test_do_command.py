@@ -776,6 +776,52 @@ The following todo item(s) became active:
         self.assertTrue(self.todolist_with_priorities.todo(4).is_completed())
         self.assertEqual(self.output, f'Completed: x {self.today} Baz p:1\n')
 
+    def test_keep_priority_do_regex1(self):
+        config('test/data/keeppriority1.conf')
+
+        command = DoCommand(['bar'], self.todolist_with_priorities, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(3).is_completed())
+        self.assertEqual(self.output, f'Completed: x (B) {self.today} Bar p:1\n')
+        self.assertFalse(self.errors)
+
+    def test_keep_priority_do_regex2(self):
+        config('test/data/keeppriority0.conf')
+
+        command = DoCommand(['bar'], self.todolist_with_priorities, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(3).is_completed())
+        self.assertEqual(self.output, f'Completed: x {self.today} Bar p:1\n')
+        self.assertFalse(self.errors)
+
+    def test_keep_priority_do_subtasks_force1(self):
+        def prompt(p_prompt):
+            prompt.prompt_shown = True
+
+        prompt.prompt_shown = False
+
+        config('test/data/keeppriority1.conf')
+
+        command = DoCommand(['--force', '2'], self.todolist_with_priorities, self.out, self.error, prompt)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertFalse(prompt.prompt_shown)
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(2).is_completed())
+        self.assertFalse(self.todolist_with_priorities.todo(3).is_completed())
+        self.assertFalse(self.todolist_with_priorities.todo(4).is_completed())
+        self.assertEqual(self.output, f'|  3| (B) Bar p:1\n'
+                                      f'|  4| (B) Baz p:1\n'
+                                      f'Completed: x (B) {self.today} Foo id:1\n')
+        self.assertFalse(self.errors)
+
     def test_do_name(self):
         name = DoCommand.name()
 

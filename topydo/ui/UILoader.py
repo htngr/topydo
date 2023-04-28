@@ -34,7 +34,7 @@ def main():
     """ Main entry point of the CLI. """
     try:
         args = sys.argv[1:]
-
+        print('TEST PRINT STATEAEMT')
         try:
             _, args = getopt.getopt(args, MAIN_OPTS, MAIN_LONG_OPTS)
         except getopt.GetoptError as e:
