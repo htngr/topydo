@@ -16,7 +16,7 @@ class DoNowCommandTest(CommandTest):
 
         self.todolist = TodoList(todos)
 
-    def test_do_now_command1(self):
+    def test_donow1(self):
         command = DoNowCommand(['1'], self.todolist, self.out, self.error, None, True, 1)
         command.execute()
 
@@ -27,7 +27,7 @@ class DoNowCommandTest(CommandTest):
         self.assertFalse(self.errors)
         self.assertTrue(self.todolist.dirty)
 
-    def test_do_now_command2(self):
+    def test_donow2(self):
         command = DoNowCommand(['2'], self.todolist, self.out, self.error, None, True, 2)
         command.execute()
 
@@ -38,7 +38,7 @@ class DoNowCommandTest(CommandTest):
         self.assertFalse(self.errors)
         self.assertTrue(self.todolist.dirty)
 
-    def test_do_now_command3(self):
+    def test_donow3(self):
         command = DoNowCommand(['3'], self.todolist, self.out, self.error, None, True, 0)
         command.execute()
 
@@ -49,7 +49,7 @@ class DoNowCommandTest(CommandTest):
         self.assertFalse(self.errors)
         self.assertTrue(self.todolist.dirty)
 
-    def test_do_now_command4(self):
+    def test_donow4(self):
         command = DoNowCommand(['4'], self.todolist, self.out, self.error, None, True, 0)
         command.execute()
 
@@ -60,7 +60,7 @@ class DoNowCommandTest(CommandTest):
         self.assertFalse(self.errors)
         self.assertFalse(self.todolist.dirty)
 
-    def test_do_now_command5(self):
+    def test_invalid_arg(self):
         command = DoNowCommand([], self.todolist, self.out, self.error)
         command.execute()
 
@@ -68,50 +68,49 @@ class DoNowCommandTest(CommandTest):
         self.assertEqual(self.errors, command.usage() + '\n')
         self.assertFalse(self.todolist.dirty)
 
-    def test_do_now_command6(self):
+    def test_invalid_todo1(self):
         command = DoNowCommand(['5'], self.todolist, self.out, self.error)
         command.execute()
 
         self.assertFalse(self.output)
-        self.assertEqual(self.errors, "Invalid todo number.\n")
+        self.assertEqual(self.errors, 'Invalid todo number.\n')
         self.assertFalse(self.todolist.dirty)
 
-    def test_do_now_command7(self):
+    def test_invalid_todo2(self):
         command = DoNowCommand(['01'], self.todolist, self.out, self.error)
         command.execute()
 
         self.assertFalse(self.output)
-        self.assertEqual(self.errors, "Invalid todo number.\n")
+        self.assertEqual(self.errors, 'Invalid todo number.\n')
         self.assertFalse(self.todolist.dirty)
 
-    def test_do_now_command8(self):
+    def test_invalid_todo3(self):
         command = DoNowCommand(['AAA'], self.todolist, self.out, self.error)
         command.execute()
 
         self.assertFalse(self.output)
-        self.assertEqual(self.errors, "Invalid todo number.\n")
+        self.assertEqual(self.errors, 'Invalid todo number.\n')
         self.assertFalse(self.todolist.dirty)
 
-    def test_do_now_command9(self):
+    def test_invalid_todo4(self):
         command = DoNowCommand([''], self.todolist, self.out, self.error)
         command.execute()
 
         self.assertFalse(self.output)
-        self.assertEqual(self.errors, "Invalid todo number.\n")
+        self.assertEqual(self.errors, 'Invalid todo number.\n')
         self.assertFalse(self.todolist.dirty)
 
-    def test_do_now_command10(self):
+    def test_none1(self):
         command = DoNowCommand([None], self.todolist, self.out, self.error)
 
-        with self.assertRaises(TypeError) as error:
+        with self.assertRaises(TypeError):
             command.execute()
 
-        # self.assertEquals(str(error.exception), "int() argument must be a string, a bytes-like object or a real number, not 'NoneType'")
         self.assertFalse(self.output)
         self.assertFalse(self.errors)
         self.assertFalse(self.todolist.dirty)
 
-    def test_do_now_command11(self):
+    def test_none2(self):
         command = DoNowCommand(None, self.todolist, self.out, self.error)
 
         with self.assertRaises(TypeError) as error:
