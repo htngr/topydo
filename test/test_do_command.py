@@ -870,6 +870,27 @@ The following todo item(s) became active:
         self.assertEqual(self.output, 'Completed: x 2014-11-18 Baz p:1\n')
         self.assertFalse(self.errors)
 
+    def test_keep_priority_do_custom_date3(self):
+        config('test/data/keeppriority1.conf')
+
+        command = DoCommand(['-d', '2014-11-18', '2'], self.todolist_with_priorities, self.out, self.error, _yes_prompt)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(2).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(3).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(4).is_completed())
+        self.assertEqual(self.todolist_with_priorities.todo(2).completion_date(), date(2014, 11, 18))
+        self.assertEqual(self.todolist_with_priorities.todo(3).completion_date(), date(2014, 11, 18))
+        self.assertEqual(self.todolist_with_priorities.todo(4).completion_date(), date(2014, 11, 18))
+        self.assertEqual(self.output, '|  3| (B) Bar p:1\n'
+                                      '|  4| (B) Baz p:1\n'
+                                      'Completed: x (B) 2014-11-18 Bar p:1\n'
+                                      'Completed: x (B) 2014-11-18 Baz p:1\n'
+                                      'Completed: x (B) 2014-11-18 Foo id:1\n')
+        self.assertFalse(self.errors)
+
     def test_do_name(self):
         name = DoCommand.name()
 
