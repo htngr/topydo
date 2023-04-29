@@ -1015,6 +1015,63 @@ The following todo item(s) became active:
         self.assertFalse(self.errors)
         self.assertEqual(self.todolist_with_priorities.count(), 10)
 
+    def test_keep_priority_already_complete1(self):
+        config('test/data/keeppriority1.conf')
+
+        command = DoCommand(['6'], self.todolist_with_priorities, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertFalse(self.todolist_with_priorities.dirty)
+        self.assertEqual(self.todolist_with_priorities.todo(6).completion_date(), date(2014, 10, 18))
+        self.assertFalse(self.output)
+        self.assertEqual(self.errors, 'Todo has already been completed.\n')
+
+    def test_keep_priority_already_complete2(self):
+        config('test/data/keeppriority0.conf')
+
+        command = DoCommand(['6'], self.todolist_with_priorities, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertFalse(self.todolist_with_priorities.dirty)
+        self.assertEqual(self.todolist_with_priorities.todo(6).completion_date(), date(2014, 10, 18))
+        self.assertFalse(self.output)
+        self.assertEqual(self.errors, 'Todo has already been completed.\n')
+
+    def test_keep_priority_invalid1(self):
+        config('test/data/keeppriority1.conf')
+
+        command = DoCommand(['99'], self.todolist_with_priorities, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertFalse(self.todolist_with_priorities.dirty)
+        self.assertFalse(self.output)
+        self.assertEqual(self.errors, 'Invalid todo number given.\n')
+
+    def test_keep_priority_invalid2(self):
+        config('test/data/keeppriority0.conf')
+
+        command = DoCommand(['AAA'], self.todolist, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertFalse(self.todolist_with_priorities.dirty)
+        self.assertFalse(self.output)
+        self.assertEqual(self.errors, 'Invalid todo number given.\n')
+
+    def test_keep_priority_invalid3(self):
+        config('test/data/keeppriority1.conf')
+
+        command = DoCommand(['01'], self.todolist_with_priorities, self.out, self.error, _yes_prompt)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertFalse(self.todolist_with_priorities.dirty)
+        self.assertFalse(self.output)
+        self.assertEqual(self.errors, 'Invalid todo number given.\n')
+
     def test_do_name(self):
         name = DoCommand.name()
 
