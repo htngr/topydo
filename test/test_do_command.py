@@ -54,7 +54,11 @@ class DoCommandTest(CommandTest):
             '(B) Foo id:1',
             '(B) Bar p:1',
             '(B) Baz p:1',
-            'Go to the gym due:2023-04-21'
+            'Go to the gym due:2023-04-21',
+            'x 2014-10-18 (C) Already complete',
+            '(D) a @test with due:2015-06-03',
+            '(E) a @test with +project',
+            '(F) Recurring! rec:1d'
         ]
 
         self.todolist = TodoList(todos)
@@ -950,6 +954,66 @@ The following todo item(s) became active:
                                       '|  4| (B) Baz p:1\n'
                                       'Completed: x 2014-11-18 Foo id:1\n')
         self.assertFalse(self.errors)
+
+    def test_keep_priority_expr_do1(self):
+        config('test/data/keeppriority1.conf')
+
+        command = DoCommand(['-e', '@test'], self.todolist_with_priorities, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(7).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(8).is_completed())
+        self.assertEqual(self.output, f'Completed: x (D) {self.today} a @test with due:2015-06-03\n'
+                                      f'Completed: x (E) {self.today} a @test with +project\n')
+        self.assertFalse(self.errors)
+
+    def test_keep_priority_expr_do2(self):
+        config('test/data/keeppriority0.conf')
+
+        command = DoCommand(['-e', '@test'], self.todolist_with_priorities, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(7).is_completed())
+        self.assertTrue(self.todolist_with_priorities.todo(8).is_completed())
+        self.assertEqual(self.output, f'Completed: x {self.today} a @test with due:2015-06-03\n'
+                                      f'Completed: x {self.today} a @test with +project\n')
+        self.assertFalse(self.errors)
+
+    def test_keep_priority_test_recurrence1(self):
+        config('test/data/keeppriority1.conf')
+
+        command = DoCommand(['9'], self.todolist_with_priorities, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(9).is_completed())
+        self.assertFalse(self.todolist_with_priorities.todo(10).is_completed())
+        self.assertEqual(self.output, f'Completed: x (F) {self.today} Recurring! rec:1d\n'
+                                      f'The following todo item(s) became active:\n'
+                                      f'| 10| (F) {self.today} Recurring! rec:1d due:{self.tomorrow}\n')
+        self.assertFalse(self.errors)
+        self.assertEqual(self.todolist_with_priorities.count(), 10)
+
+    def test_keep_priority_test_recurrence2(self):
+        config('test/data/keeppriority0.conf')
+
+        command = DoCommand(['9'], self.todolist_with_priorities, self.out, self.error)
+        command.execute()
+        command.execute_post_archive_actions()
+
+        self.assertTrue(self.todolist_with_priorities.dirty)
+        self.assertTrue(self.todolist_with_priorities.todo(9).is_completed())
+        self.assertFalse(self.todolist_with_priorities.todo(10).is_completed())
+        self.assertEqual(self.output, f'Completed: x {self.today} Recurring! rec:1d\n'
+                                      f'The following todo item(s) became active:\n'
+                                      f'| 10| (F) {self.today} Recurring! rec:1d due:{self.tomorrow}\n')
+        self.assertFalse(self.errors)
+        self.assertEqual(self.todolist_with_priorities.count(), 10)
 
     def test_do_name(self):
         name = DoCommand.name()
