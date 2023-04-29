@@ -1,0 +1,7 @@
+topydo~=0.14
+freezegun~=1.2.2
+arrow~=1.2.3
+urwid~=2.1.2
+watchdog~=3.0.0
+Columnar~=1.4.1
+setuptools~=65.5.1
