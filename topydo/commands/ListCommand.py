@@ -36,22 +36,21 @@ from topydo.lib.View import View
 
 
 class ListCommand(ExpressionCommand):
-
-    format_selection = input("Format Options: \n1) HTML\n2) Markdown\nselect format: ")
-    def list_items(items, output_format):
-        if output_format == "1":
-            output = "<ol>\n"
-            for item in items:
-                output += f"<li>{item}</li>\n"
-            output += "</ol>"
-        elif output_format == "2":
-            output = ""
-            for itme in items:
-                output += f'* {itme}\n'
-        else:
-            output = "invalid format --> select 1 or 2"
-        return output
-    list_items(items, format_selection)
+    # format_selection = input("Format Options: \n1) HTML\n2) Markdown\nselect format: ")
+    #
+    # def list_items(items, output_format):
+    #     if output_format == "1":
+    #         output = "<ol>\n"
+    #         for item in items:
+    #             output += f"<li>{item}</li>\n"
+    #         output += "</ol>"
+    #     elif output_format == "2":
+    #         output = ""
+    #         for itme in items:
+    #             output += f'* {itme}\n'
+    #     else:
+    #         output = "invalid format --> select 1 or 2"
+    #     return output
 
     def __init__(self, p_args, p_todolist,  # pragma: no branch
                  p_out=lambda a: None,
@@ -161,6 +160,35 @@ class ListCommand(ExpressionCommand):
         printing). If a format was specified on the commandline, this format is
         sent to the output.
         """
+
+        # format_selection = input("Format Options: \n1) HTML\n2) Markdown\nselect format: ")
+        #
+        # def list_items(items, output_format):
+        #     if output_format == "1":
+        #         output = "<ol>\n"
+        #         for item in items:
+        #             output += f"<li>{item}</li>\n"
+        #         output += "</ol>"
+        #     elif output_format == "2":
+        #         output = ""
+        #         for itme in items:
+        #             output += f'* {itme}\n'
+        #     else:
+        #         output = "invalid format --> select 1 or 2"
+        #     return output
+        if self.format == "1":
+            output = self.list_items_html(items)
+        elif self.format == "2":
+            output = self.list_items_markdown(items)
+        else:
+            self.error("invalid format --> select 1 or 2")
+            return
+
+        if output:
+            self.out(output)
+
+
+
         if self.printer is None:
             # create a standard printer with some filters
             indent = config().list_indent()
@@ -227,7 +255,7 @@ class ListCommand(ExpressionCommand):
             # importing icalendar failed, most likely due to Python 3.2
             self.error("icalendar is not supported in this Python version.")
             return False
-
+        print("I AM EXECUTE!!!")
         self._print()
         return True
 
