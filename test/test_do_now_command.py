@@ -60,6 +60,28 @@ class DoNowCommandTest(CommandTest):
         self.assertFalse(self.errors)
         self.assertFalse(self.todolist.dirty)
 
+    def test_donow_multi_args1(self):
+        command = DoNowCommand(['3', '4'], self.todolist, self.out, self.error, None, True, 1)
+        command.execute()
+
+        self.assertEqual(self.todolist.todo(3).source(), 'Baz min:1')
+        self.assertEqual(self.output, 'WORKING ON: Baz\n'
+                                      '\nMINUTE(S) PASSED: 1\n'
+                                      'UPDATED TODO: |3| Baz min:1\n')
+        self.assertFalse(self.errors)
+        self.assertTrue(self.todolist.dirty)
+
+    def test_donow_multi_args2(self):
+        command = DoNowCommand(['4', '3'], self.todolist, self.out, self.error, None, True, 1)
+        command.execute()
+
+        self.assertEqual(self.todolist.todo(4).source(), 'Qux min:31')
+        self.assertEqual(self.output, 'WORKING ON: Qux min:30\n'
+                                      '\nMINUTE(S) PASSED: 1\n'
+                                      'UPDATED TODO: |4| Qux min:31\n')
+        self.assertFalse(self.errors)
+        self.assertTrue(self.todolist.dirty)
+
     def test_invalid_arg(self):
         command = DoNowCommand([], self.todolist, self.out, self.error)
         command.execute()
