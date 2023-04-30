@@ -17,8 +17,12 @@
 from topydo.lib.Command import Command
 
 
+def filter_projects(projects):
+    pass
+
+
 class ListProjectCommand(Command):
-    def __init__(self, p_args, p_todolist, #pragma: no branch
+    def __init__(self, p_args, p_todolist,  # pragma: no branch
                  p_out=lambda a: None,
                  p_err=lambda a: None,
                  p_prompt=lambda a: None):
@@ -28,8 +32,9 @@ class ListProjectCommand(Command):
     def execute(self):
         if not super().execute():
             return False
-
-        for project in sorted(self.todolist.projects(), key=lambda s: s.lower()):
+        projects = self.todolist.projects()
+        filtered_projects = filter_projects(projects)
+        for project in filtered_projects:
             self.out(project)
 
     def usage(self):
