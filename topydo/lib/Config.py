@@ -57,6 +57,7 @@ class _Config:
             'column_keymap',
             'columns',
             'dep',
+            'do',
             'ls',
             'sort',
             'tags',
@@ -104,6 +105,10 @@ class _Config:
             'dep': {
                 'append_parent_projects': '0',
                 'append_parent_contexts': '0',
+            },
+
+            'do': {
+                'keep_priority': '0'
             },
 
             'edit': {
@@ -309,6 +314,12 @@ class _Config:
             return self.cp.getboolean('dep', 'append_parent_contexts')
         except ValueError:
             return self.defaults['dep']['append_parent_contexts'] == '1'
+
+    def keep_priority(self):
+        try:
+            return self.cp.getboolean('do', 'keep_priority')
+        except ValueError:
+            return self.defaults['do']['keep_priority'] == '1'
 
     def _get_tag(self, p_tag):
         try:
