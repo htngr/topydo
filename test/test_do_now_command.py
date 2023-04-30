@@ -82,7 +82,6 @@ class DoNowCommandTest(CommandTest):
         self.assertFalse(self.errors)
         self.assertTrue(self.todolist.dirty)
 
-
     def test_invalid_arg(self):
         command = DoNowCommand([], self.todolist, self.out, self.error)
         command.execute()
