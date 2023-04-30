@@ -29,26 +29,29 @@ from topydo.lib.TodoListBase import InvalidTodoException
 from topydo.lib.Utils import get_terminal_size
 from topydo.lib.View import View
 
+
 # issue: enhance list command to allow user to specify an HTML or Markdown output format
-format_selection = input("Format Options: \n1) HTML\n2) Markdown\nselect format: ")
 
 # output_format = format_selection
-def list_items(items, output_format=format_selection):
-    if output_format == "1":
-        output = "<ol>\n"
-        for item in items:
-            output += f"<li>{item}</li>\n"
-        output += "</ol>"
-    elif output_format == "2":
-        output = ""
-        for itme in items:
-            output += f'* {itme}\n'
-    else:
-        output = "invalid format --> select 1 or 2"
-    return output
 
 
 class ListCommand(ExpressionCommand):
+
+    format_selection = input("Format Options: \n1) HTML\n2) Markdown\nselect format: ")
+    def list_items(items, output_format):
+        if output_format == "1":
+            output = "<ol>\n"
+            for item in items:
+                output += f"<li>{item}</li>\n"
+            output += "</ol>"
+        elif output_format == "2":
+            output = ""
+            for itme in items:
+                output += f'* {itme}\n'
+        else:
+            output = "invalid format --> select 1 or 2"
+        return output
+    list_items(items, format_selection)
 
     def __init__(self, p_args, p_todolist,  # pragma: no branch
                  p_out=lambda a: None,
