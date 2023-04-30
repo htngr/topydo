@@ -18,7 +18,8 @@ from topydo.lib.Command import Command
 
 
 def filter_projects(projects):
-    pass
+
+    return sorted(projects, key=lambda x: x['name'].lower())
 
 
 class ListProjectCommand(Command):
