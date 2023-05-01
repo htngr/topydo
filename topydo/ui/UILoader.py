@@ -60,11 +60,8 @@ def main():
                     error("Column mode is not supported on Windows.")
                 else:
                     error("Could not load column mode: {}".format(err))
-        elif args[0] != SUBCOMMAND_MAP.keys():
-            try:
-                self._print_to_console('Sorry this command is invalid, please try again :( ')
-            except SyntaxError as errr:
-                self._print_to_console('Sorry this command is invalid, please try again :(' )
+   #     elif args[0] != SUBCOMMAND_MAP.keys():
+    #            print('Sorry this command is invalid, please try again :(' )
         else:
             CLIApplication().run()
     except IndexError:
