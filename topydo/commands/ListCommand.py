@@ -176,37 +176,69 @@ class ListCommand(ExpressionCommand):
         #     else:
         #         output = "invalid format --> select 1 or 2"
         #     return output
-        if self.format == "1":
-            output = self.list_items_html(items)
-        elif self.format == "2":
-            output = self.list_items_markdown(items)
-        else:
-            self.error("invalid format --> select 1 or 2")
-            return
-
-        if output:
-            self.out(output)
-
-
 
         if self.printer is None:
             # create a standard printer with some filters
             indent = config().list_indent()
-            final_format = ' ' * indent + self.format
+            format_selection = input("Format Options: \n1) HTML\n2) Markdown\nselect format: ")
+            if format_selection == "1":
+                # print("selected HTML")
+                # print('-------------------------')
 
-            filters = []
-            filters.append(PrettyPrinterFormatFilter(self.todolist, final_format))
+                final_format = ' ' * indent + self.format
 
-            self.printer = pretty_printer_factory(self.todolist, filters)
+                filters = []
+                filters.append(PrettyPrinterFormatFilter(self.todolist, final_format))
 
-        try:
-            if self.group_expression:
-                self.out(self.printer.print_groups(self._view().groups))
+                self.printer = pretty_printer_factory(self.todolist, filters)
+
+                try:
+                    if self.group_expression:
+                        self.out(self.printer.print_groups(self._view().groups))
+                    else:
+                        self.out(self.printer.print_list(self._view().todos))
+                except ListFormatError:
+                    self.error('Error while parsing format string (list_format config'
+                               ' option or -F)')
+            elif format_selection == "2":
+                print('--------------------------')
+                print('|#|    date   |   task   |')
+                print('|-|-----------|----------|')
+
+                final_format = ' ' * indent + self.format + '|'
+
+                filters = []
+                filters.append(PrettyPrinterFormatFilter(self.todolist, final_format))
+
+                self.printer = pretty_printer_factory(self.todolist, filters)
+
+                try:
+                    if self.group_expression:
+                        self.out(self.printer.print_groups(self._view().groups))
+                    else:
+                        self.out(self.printer.print_list(self._view().todos))
+                except ListFormatError:
+                    self.error('Error while parsing format string (list_format config'
+                               ' option or -F)')
+                print('---------------------------')
             else:
-                self.out(self.printer.print_list(self._view().todos))
-        except ListFormatError:
-            self.error('Error while parsing format string (list_format config'
-                       ' option or -F)')
+                print("invalid format --> select 1 or 2")
+            # print('---------------------------')
+            # final_format = ' ' * indent + self.format
+            #
+            # filters = []
+            # filters.append(PrettyPrinterFormatFilter(self.todolist, final_format))
+            #
+            # self.printer = pretty_printer_factory(self.todolist, filters)
+
+        # try:
+        #     if self.group_expression:
+        #         self.out(self.printer.print_groups(self._view().groups))
+        #     else:
+        #         self.out(self.printer.print_list(self._view().todos))
+        # except ListFormatError:
+        #     self.error('Error while parsing format string (list_format config'
+        #                ' option or -F)')
 
     def _view(self):
         sorter = Sorter(self.sort_expression, self.group_expression)
@@ -255,7 +287,7 @@ class ListCommand(ExpressionCommand):
             # importing icalendar failed, most likely due to Python 3.2
             self.error("icalendar is not supported in this Python version.")
             return False
-        print("I AM EXECUTE!!!")
+        # print("execute function test")
         self._print()
         return True
 
