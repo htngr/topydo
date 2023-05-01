@@ -366,7 +366,7 @@ class UIApplication(CLIApplicationBase):
                 self._rollback()
         except TypeError:
             # TODO: show error message
-            pass
+            self._print_to_console('Invalid command, please try again')
 
     def _update_all_columns(self):
         for column, _ in self.columns.contents:

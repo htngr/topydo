@@ -124,7 +124,8 @@ def get_subcommand(p_args):
                     return get_subcommand(args)
             except IndexError:
                 # will result in empty result
-                pass
+               # pass
+                print('Invalid Command, please try again')
         else:
             p_command = config().default_command()
             if p_command in alias_map:
