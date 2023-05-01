@@ -115,6 +115,8 @@ def get_subcommand(p_args):
         elif subcommand in SUBCOMMAND_MAP:
             result = import_subcommand(subcommand)
             args = args[1:]
+        elif subcommand not in SUBCOMMAND_MAP:
+            self._print_to_console('Error command invalid :( please try again ')
         elif subcommand == 'help':
             try:
                 subcommand = args[1]
@@ -123,15 +125,16 @@ def get_subcommand(p_args):
                     args = [subcommand, 'help']
                     return get_subcommand(args)
             except IndexError:
-                # will result in empty result
-               # pass
-                print('Invalid Command, please try again')
+                pass #will result empty
+
         else:
             p_command = config().default_command()
             if p_command in alias_map:
                 result, args = resolve_alias(p_command, args)
             elif p_command in SUBCOMMAND_MAP:
                 result = import_subcommand(p_command)
+            elif p_command not in SUBCOMMAND_MAP:
+                self._print_to_console('Invalid command, please try again')
                 # leave args unchanged
     except IndexError:
         p_command = config().default_command()

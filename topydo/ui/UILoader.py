@@ -20,7 +20,7 @@ import getopt
 import sys
 
 
-
+from topydo.Commands import SUBCOMMAND_MAP
 from topydo.ui.CLIApplicationBase import MAIN_LONG_OPTS, MAIN_OPTS, error
 from topydo.ui.cli.CLI import CLIApplication
 
@@ -62,9 +62,9 @@ def main():
                     error("Could not load column mode: {}".format(err))
         elif args[0] != SUBCOMMAND_MAP.keys():
             try:
-                print('Sorry this command is invalid, please try again :( ')
+                self._print_to_console('Sorry this command is invalid, please try again :( ')
             except SyntaxError as errr:
-                print('Sorry this command is invalid, please try again :(' )
+                self._print_to_console('Sorry this command is invalid, please try again :(' )
         else:
             CLIApplication().run()
     except IndexError:
