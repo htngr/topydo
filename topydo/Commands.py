@@ -116,7 +116,7 @@ def get_subcommand(p_args):
             result = import_subcommand(subcommand)
             args = args[1:]
         elif subcommand not in SUBCOMMAND_MAP:
-            print('Error command invalid :( please try again. ')
+            print(f'Error invalid command: {subcommand} :( Please try again. ')
             print('Please look down below for a list of available commands to use: ')
         elif subcommand == 'help':
             try:
