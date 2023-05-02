@@ -30,6 +30,7 @@ from topydo.lib.TodoList import TodoList
 
 from .command_testcase import CommandTest
 from .facilities import load_file_to_todolist
+from topydo.lib.TodoList import TodoList
 
 # We're searching for 'mock'
 # 'mock' was added as 'unittest.mock' in Python 3.3, but PyPy 3 is based on Python 3.2
@@ -627,6 +628,24 @@ class ListCommandDotTest(CommandTest):
 
         self.assertEqual(self.output, dottext)
         self.assertEqual(self.errors, "")
+
+
+class ListCommandHtmlTest(CommandTest):
+    def test_html_1(self):
+        todos = [
+            "feed the dog",
+            "feed the cat",
+            "walk the cat",
+            "feed the birds"
+        ]
+        self.todolist = TodoList(todos)
+        ListCommand(['-f', 'html'], self.todolist, self.out, self.error).execute()
+        self.assertEqual(self.output, '<ol>\r\n'
+                                      '<li>feed the dog</li>\r\n'
+                                      '<li>feed the cat</li>\r\n'
+                                      '<li>walk the cat</li>\r\n'
+                                      '<li>feed the birds</li>\r\n'
+                                      '</ol>\r\n')
 
 
 @freeze_time('2016, 12, 6')

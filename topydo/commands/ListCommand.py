@@ -93,11 +93,11 @@ class ListCommand(ExpressionCommand):
                         for todo in self.todolist.todos():
                             print(f"<li>{todo.source()}</li>", file=html_file)
                         print('</ol>', file=html_file)
-                    print('<ol>')
+                    self.out('<ol>')
                     for todo in self.todolist.todos():
-                        print(f"<li>{todo.source()}</li>")
+                        self.out(f"<li>{todo.source()}</li>")
                         # counter += 1
-                    print('</ol>')
+                    self.out('</ol>')
                     # print(self.todolist.print_todos())
                     # self.printer = None
                     return
