@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import unittest
+import os
 
 from topydo.Commands import get_subcommand
 from topydo.commands.AddCommand import AddCommand
@@ -410,6 +411,11 @@ class GetSubcommandTest(TopydoTest):
         self.assertFalse(real_cmd)
         self.assertEqual(final_args, ['help', 'nonexisting'])
 
+    def test_invalidCommand(self):
+        os.system('topydo joker > test_file.txt')
+        test_file_name = str(open('test_file.txt').readlines())
+        self.assertIn('Error invalid command: joker :( Please try again. ', test_file_name )
+        os.remove('test_file.txt')
 
 
 if __name__ == '__main__':
