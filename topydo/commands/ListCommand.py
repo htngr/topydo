@@ -198,8 +198,8 @@ class ListCommand(ExpressionCommand):
             Otherwise, it looks for a newline ('\n') in the environmental variable
             PS1.
         '''
-        lines_in_prompt = 1  # prompt is assumed to take up one line, even
-                             #   without any newlines in it
+        lines_in_prompt = 1     # prompt is assumed to take up one line, even
+                                #   without any newlines in it
         if "win32" in sys.platform:
             lines_in_prompt += 1  # Windows will typically print a free line after
                                   #   the program output
