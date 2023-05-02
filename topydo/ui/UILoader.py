@@ -19,10 +19,8 @@
 import getopt
 import sys
 
-
-from topydo.Commands import SUBCOMMAND_MAP
-from topydo.ui.CLIApplicationBase import MAIN_LONG_OPTS, MAIN_OPTS, error
 from topydo.ui.cli.CLI import CLIApplication
+from topydo.ui.CLIApplicationBase import MAIN_LONG_OPTS, MAIN_OPTS, error
 
 _WINDOWS = "win32" in sys.platform
 

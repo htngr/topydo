@@ -339,7 +339,7 @@ class UIApplication(CLIApplicationBase):
 
         env_args = (self.todolist, p_output, self._output, self._input)
         ids = None
-        #THIS IS A TEST
+
         if '{}' in args:
             if self._has_marked_todos():
                 ids = self.marked_todos
@@ -366,7 +366,7 @@ class UIApplication(CLIApplicationBase):
                 self._rollback()
         except TypeError:
             # TODO: show error message
-            self._print_to_console('Invalid command, please try again')
+            pass
 
     def _update_all_columns(self):
         for column, _ in self.columns.contents:

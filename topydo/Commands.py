@@ -126,16 +126,15 @@ def get_subcommand(p_args):
                     args = [subcommand, 'help']
                     return get_subcommand(args)
             except IndexError:
-                pass #will result empty
-             
-
+                # will result in empty result
+                pass
         else:
             p_command = config().default_command()
             if p_command in alias_map:
                 result, args = resolve_alias(p_command, args)
             elif p_command in SUBCOMMAND_MAP:
                 result = import_subcommand(p_command)
-
+                # leave args unchanged
     except IndexError:
         p_command = config().default_command()
         if p_command in alias_map:
