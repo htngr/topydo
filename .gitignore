@@ -4,6 +4,7 @@
 install
 .coverage
 *,cover
+/todolist.html
 
 # Distribution / packaging
 .Python

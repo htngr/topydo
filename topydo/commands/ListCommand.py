@@ -30,28 +30,7 @@ from topydo.lib.Utils import get_terminal_size
 from topydo.lib.View import View
 
 
-# issue: enhance list command to allow user to specify an HTML or Markdown output format
-
-# output_format = format_selection
-
-
 class ListCommand(ExpressionCommand):
-    # format_selection = input("Format Options: \n1) HTML\n2) Markdown\nselect format: ")
-    #
-    # def list_items(items, output_format):
-    #     if output_format == "1":
-    #         output = "<ol>\n"
-    #         for item in items:
-    #             output += f"<li>{item}</li>\n"
-    #         output += "</ol>"
-    #     elif output_format == "2":
-    #         output = ""
-    #         for itme in items:
-    #             output += f'* {itme}\n'
-    #     else:
-    #         output = "invalid format --> select 1 or 2"
-    #     return output
-
     def __init__(self, p_args, p_todolist,  # pragma: no branch
                  p_out=lambda a: None,
                  p_err=lambda a: None,
@@ -102,6 +81,26 @@ class ListCommand(ExpressionCommand):
                     # a graph without dependencies is not so useful, hence
                     # show all
                     self.show_all = True
+                elif value == 'html':
+                    # print('html format here')
+                    # self.printer = ['html format here']
+                    # from topydo.lib.printers.Html import HtmlPrinter
+                    # print(HtmlPrinter().print_list())
+                    # self.printer = HtmlPrinter()
+                    # counter = 1
+                    with open('todolist.html', 'w') as html_file:
+                        print('<ol>', file=html_file)
+                        for todo in self.todolist.todos():
+                            print(f"<li>{todo.source()}</li>", file=html_file)
+                        print('</ol>', file=html_file)
+                    print('<ol>')
+                    for todo in self.todolist.todos():
+                        print(f"<li>{todo.source()}</li>")
+                        # counter += 1
+                    print('</ol>')
+                    # print(self.todolist.print_todos())
+                    # self.printer = None
+                    return
                 else:
                     self.printer = None
             elif opt == '-F':
@@ -160,85 +159,24 @@ class ListCommand(ExpressionCommand):
         printing). If a format was specified on the commandline, this format is
         sent to the output.
         """
-
-        # format_selection = input("Format Options: \n1) HTML\n2) Markdown\nselect format: ")
-        #
-        # def list_items(items, output_format):
-        #     if output_format == "1":
-        #         output = "<ol>\n"
-        #         for item in items:
-        #             output += f"<li>{item}</li>\n"
-        #         output += "</ol>"
-        #     elif output_format == "2":
-        #         output = ""
-        #         for itme in items:
-        #             output += f'* {itme}\n'
-        #     else:
-        #         output = "invalid format --> select 1 or 2"
-        #     return output
-
         if self.printer is None:
             # create a standard printer with some filters
             indent = config().list_indent()
-            format_selection = input("Format Options: \n1) HTML\n2) Markdown\nselect format: ")
-            if format_selection == "1":
-                # print("selected HTML")
-                # print('-------------------------')
+            final_format = ' ' * indent + self.format
 
-                final_format = ' ' * indent + self.format
+            filters = []
+            filters.append(PrettyPrinterFormatFilter(self.todolist, final_format))
 
-                filters = []
-                filters.append(PrettyPrinterFormatFilter(self.todolist, final_format))
+            self.printer = pretty_printer_factory(self.todolist, filters)
 
-                self.printer = pretty_printer_factory(self.todolist, filters)
-
-                try:
-                    if self.group_expression:
-                        self.out(self.printer.print_groups(self._view().groups))
-                    else:
-                        self.out(self.printer.print_list(self._view().todos))
-                except ListFormatError:
-                    self.error('Error while parsing format string (list_format config'
-                               ' option or -F)')
-            elif format_selection == "2":
-                print('--------------------------')
-                print('|#|    date   |   task   |')
-                print('|-|-----------|----------|')
-
-                final_format = ' ' * indent + self.format + '|'
-
-                filters = []
-                filters.append(PrettyPrinterFormatFilter(self.todolist, final_format))
-
-                self.printer = pretty_printer_factory(self.todolist, filters)
-
-                try:
-                    if self.group_expression:
-                        self.out(self.printer.print_groups(self._view().groups))
-                    else:
-                        self.out(self.printer.print_list(self._view().todos))
-                except ListFormatError:
-                    self.error('Error while parsing format string (list_format config'
-                               ' option or -F)')
-                print('---------------------------')
+        try:
+            if self.group_expression:
+                self.out(self.printer.print_groups(self._view().groups))
             else:
-                print("invalid format --> select 1 or 2")
-            # print('---------------------------')
-            # final_format = ' ' * indent + self.format
-            #
-            # filters = []
-            # filters.append(PrettyPrinterFormatFilter(self.todolist, final_format))
-            #
-            # self.printer = pretty_printer_factory(self.todolist, filters)
-
-        # try:
-        #     if self.group_expression:
-        #         self.out(self.printer.print_groups(self._view().groups))
-        #     else:
-        #         self.out(self.printer.print_list(self._view().todos))
-        # except ListFormatError:
-        #     self.error('Error while parsing format string (list_format config'
-        #                ' option or -F)')
+                self.out(self.printer.print_list(self._view().todos))
+        except ListFormatError:
+            self.error('Error while parsing format string (list_format config'
+                       ' option or -F)')
 
     def _view(self):
         sorter = Sorter(self.sort_expression, self.group_expression)
@@ -287,7 +225,7 @@ class ListCommand(ExpressionCommand):
             # importing icalendar failed, most likely due to Python 3.2
             self.error("icalendar is not supported in this Python version.")
             return False
-        # print("execute function test")
+
         self._print()
         return True
 
