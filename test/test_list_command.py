@@ -640,12 +640,12 @@ class ListCommandHtmlTest(CommandTest):
         ]
         self.todolist = TodoList(todos)
         ListCommand(['-f', 'html'], self.todolist, self.out, self.error).execute()
-        self.assertEqual(self.output, '<ol>\r\n'
-                                      '<li>feed the dog</li>\r\n'
-                                      '<li>feed the cat</li>\r\n'
-                                      '<li>walk the cat</li>\r\n'
-                                      '<li>feed the birds</li>\r\n'
-                                      '</ol>\r\n')
+        self.assertEqual(self.output, '<ol>\n'
+                                      '<li>feed the dog</li>\n'
+                                      '<li>feed the cat</li>\n'
+                                      '<li>walk the cat</li>\n'
+                                      '<li>feed the birds</li>\n'
+                                      '</ol>\n')
 
 
 @freeze_time('2016, 12, 6')
