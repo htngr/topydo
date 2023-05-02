@@ -32,8 +32,13 @@ SUBCOMMAND_MAP = {
     'dep': 'DepCommand',
     'depri': 'DepriCommand',
     'do': 'DoCommand',
+    'donow': 'DoNowCommand',
     'edit': 'EditCommand',
     'exit': 'ExitCommand',  # used for the prompt
+    'helpcl': 'HelpCommandLineCommand',
+    'helpcol': 'HelpColumnActionsCommand',
+    'helpitem': 'HelpTodoItemActionsCommand',
+    'helpnav': 'HelpNavigationCommand',
     'ls': 'ListCommand',
     'lscon': 'ListContextCommand',
     'lsprj': 'ListProjectCommand',
@@ -122,9 +127,29 @@ def get_subcommand(p_args):
                 if subcommand in SUBCOMMAND_MAP:
                     args = [subcommand, 'help']
                     return get_subcommand(args)
+                elif subcommand in ['cl', 'col', 'item', 'nav']:
+                    result = import_subcommand(f'help{subcommand}')
+                    args = []
             except IndexError:
                 # will result in empty result
                 pass
+        elif subcommand in ['cl', 'col', 'item', 'nav']:
+            try:
+                arg = args[1]
+
+                if arg == 'help':
+                    result = import_subcommand(f'help{subcommand}')
+                    args = []
+            except IndexError:
+                p_command = config().default_command()
+                if p_command in alias_map:
+                    result, args = resolve_alias(p_command, args)
+                elif p_command in SUBCOMMAND_MAP:
+                    result = import_subcommand(p_command)
+        elif subcommand in ['clhelp', 'colhelp', 'itemhelp', 'navhelp']:
+            subcommand = subcommand.replace('help', '')
+            result = import_subcommand(f'help{subcommand}')
+            args = []
         elif subcommand not in SUBCOMMAND_MAP:
             print(f'Error invalid command: {subcommand} :( Please try again. ')
             print('Please look down below for a list of available commands to use: ')
