@@ -647,6 +647,12 @@ class ListCommandHtmlTest(CommandTest):
                                       '<li>feed the birds</li>\n'
                                       '</ol>\n')
 
+    def test_html_2(self):
+        todos = []
+        self.todolist = TodoList(todos)
+        ListCommand(['-f', 'html'], self.todolist, self.out, self.error).execute()
+        self.assertEqual(self.output, '<ol>\n</ol>\n')
+
 
 @freeze_time('2016, 12, 6')
 class ListCommandGroupTest(CommandTest):
