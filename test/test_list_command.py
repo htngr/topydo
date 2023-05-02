@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import codecs
+import io
 import os
 import re
 import sys
@@ -879,48 +880,48 @@ Project: None
 """)
         self.assertEqual(self.errors, "")
 
-        def test_invalid_format(self):
-            user_input = "3"
-            todo_list = []
-            printer = _print(todo_list)
-            with unittest.mock.patch('builtins.input', return_value=user_input):
-                with unittest.mock.patch('sys.stdout', new=io.StringIO()) as fake_out:
-                    printer._print()
-                    self.assertEqual(fake_out.getvalue().strip(), "invalid format --> select 1 or 2")
+    def test_invalid_format(self):
+        user_input = "3"
+        todo_list = []
+        printer = ListCommand([], todo_list)._print()
+        with unittest.mock.patch('builtins.input', return_value=user_input):
+            with unittest.mock.patch('sys.stdout', new=io.StringIO()) as fake_out:
+                printer._print()
+                self.assertEqual(fake_out.getvalue().strip(), "invalid format --> select 1 or 2")
 
-        def test_html_format(self):
-            user_input = "1"
-            todo_list = ["Buy groceries", "Walk the dog", "Do laundry"]
-            printer = _print(todo_list)
-            with unittest.mock.patch('builtins.input', return_value=user_input):
-                with unittest.mock.patch('sys.stdout', new=io.StringIO()) as fake_out:
-                    printer._print()
-                    expected_output = "<ol>\n<li>Buy groceries</li>\n<li>Walk the dog</li>\n<li>Do laundry</li>\n</ol>"
-                    self.assertEqual(fake_out.getvalue().strip(), expected_output)
+    def test_html_format(self):
+        user_input = "1"
+        todo_list = ["homework1", "homework2", "homework1000"]
+        printer = ListCommand([], todo_list)._print()
+        with unittest.mock.patch('builtins.input', return_value=user_input):
+            with unittest.mock.patch('sys.stdout', new=io.StringIO()) as fake_out:
+                printer._print()
+                expected_output = "<ol>\n<li>homework1</li>\n<li>homework2</li>\n<li>homework1000</li>\n</ol>"
+                self.assertEqual(fake_out.getvalue().strip(), expected_output)
 
-        def test_markdown_format(self):
-            user_input = "2"
-            todo_list = ["Buy groceries", "Walk the dog", "Do laundry"]
-            printer = _print(todo_list)
-            with unittest.mock.patch('builtins.input', return_value=user_input):
-                with unittest.mock.patch('sys.stdout', new=io.StringIO()) as fake_out:
-                    printer._print()
-                    expected_output = "|#|    date   |   task   |\n|-|-----------|----------|\n|1|           |Buy " \
-                                      "groceries|\n|2|           |Walk the dog|\n|3|           |Do laundry  " \
-                                      "|\n---------------------------"
-                    self.assertEqual(fake_out.getvalue().strip(), expected_output)
+    def test_markdown_format(self):
+        user_input = "2"
+        todo_list = ["homework1", "homework2", "homework1000"]
+        printer = ListCommand([], todo_list)._print()
+        with unittest.mock.patch('builtins.input', return_value=user_input):
+            with unittest.mock.patch('sys.stdout', new=io.StringIO()) as fake_out:
+                printer._print()
+                expected_output = "|#|    date   |   task   |\n|-|-----------|----------|\n|1|           |homework1" \
+                                  "|\n|2|           |homework2|\n|3|           |homework1000 " \
+                                  "|\n---------------------------"
+                self.assertEqual(fake_out.getvalue().strip(), expected_output)
 
-        def test_markdown_format(self):
-            user_input = "2"
-            todo_list = ["Buy groceries", "Walk the dog", "Do laundry"]
-            printer = _print(todo_list)
-            with unittest.mock.patch('builtins.input', return_value=user_input):
-                with unittest.mock.patch('sys.stdout', new=io.StringIO()) as fake_out:
-                    printer._print()
-                    expected_output = "|#|    date   |   task   |\n|-|-----------|----------|\n|1|           |Buy " \
-                                      "groceries|\n|2|           |Walk the dog|\n|3|           |Do laundry  " \
-                                      "|\n---------------------------"
-                    self.assertEqual(fake_out.getvalue().strip(), expected_output)
+    def test_markdown_format(self):
+        user_input = "2"
+        todo_list = ["homework1", "homework2", "homework1000"]
+        printer = ListCommand([], todo_list)._print()
+        with unittest.mock.patch('builtins.input', return_value=user_input):
+            with unittest.mock.patch('sys.stdout', new=io.StringIO()) as fake_out:
+                printer._print()
+                expected_output = "|#|    date   |   task   |\n|-|-----------|----------|\n|1|           |homework1" \
+                                  "|\n|2|           |homework2|\n|3|           |homework1000 " \
+                                  "|\n---------------------------"
+                self.assertEqual(fake_out.getvalue().strip(), expected_output)
 
 
 if __name__ == '__main__':
