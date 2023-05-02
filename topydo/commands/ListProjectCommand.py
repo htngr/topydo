@@ -14,12 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 from topydo.lib.Command import Command
-
-
-def filter_projects(projects):
-
-    return sorted(projects, key=lambda x: x['name'].lower())
 
 
 class ListProjectCommand(Command):
@@ -33,9 +29,9 @@ class ListProjectCommand(Command):
     def execute(self):
         if not super().execute():
             return False
-        projects = self.todolist.projects()
-        filtered_projects = filter_projects(projects)
-        for project in filtered_projects:
+
+        projects = sorted(self.todolist.projects(), key=lambda s: s.lower())
+        for project in projects:
             self.out(project)
 
     def usage(self):
