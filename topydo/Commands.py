@@ -150,10 +150,8 @@ def get_subcommand(p_args):
             subcommand = subcommand.replace('help', '')
             result = import_subcommand(f'help{subcommand}')
             args = []
-        elif subcommand not in SUBCOMMAND_MAP:
-            print(f'Error invalid command: {subcommand} :( Please try again. ')
-            print('Please look down below for a list of available commands to use: ')
         else:
+            print(f'Error invalid command: {subcommand} :( Please try again. ')
             p_command = config().default_command()
             if p_command in alias_map:
                 result, args = resolve_alias(p_command, args)

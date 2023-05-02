@@ -410,5 +410,17 @@ class GetSubcommandTest(TopydoTest):
         self.assertFalse(real_cmd)
         self.assertEqual(final_args, ['help', 'nonexisting'])
 
+    def test_resolve_alias_with_invalid_command(self):
+        command = 'invalid_command'
+        args = ['arg1', 'arg2']
+        expected_command = None
+        expected_args = []
+
+        command, resolved_args = resolve_alias(command, args, alias_map=self.alias_map)
+
+        self.assertEqual(command, expected_command)
+        self.assertEqual(resolved_args, expected_args)
+
+
 if __name__ == '__main__':
     unittest.main()
