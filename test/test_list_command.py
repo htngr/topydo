@@ -653,6 +653,20 @@ class ListCommandHtmlTest(CommandTest):
         ListCommand(['-f', 'html'], self.todolist, self.out, self.error).execute()
         self.assertEqual(self.output, '<ol>\n</ol>\n')
 
+    def test_html_3(self):
+        todos = None
+        with self.assertRaises(TypeError) as error:
+            self.todolist = TodoList(todos)
+            ListCommand(['-f', 'html'], self.todolist, self.out, self.error).execute()
+        self.assertEqual(str(error.exception), "'NoneType' object is not iterable")
+
+    def test_html_4(self):
+        todos = [None]
+        with self.assertRaises(AttributeError) as error:
+            self.todolist = TodoList(todos)
+            ListCommand(['-f', 'html'], self.todolist, self.out, self.error).execute()
+        self.assertEqual(str(error.exception), "'NoneType' object has no attribute 'strip'")
+
 
 @freeze_time('2016, 12, 6')
 class ListCommandGroupTest(CommandTest):
