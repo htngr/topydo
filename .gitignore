@@ -7,6 +7,7 @@ install
 /.todo.bak
 /todo.txt
 /done.txt
+/todolist.html
 
 # Distribution / packaging
 .Python

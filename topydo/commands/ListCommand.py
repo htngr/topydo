@@ -81,6 +81,26 @@ class ListCommand(ExpressionCommand):
                     # a graph without dependencies is not so useful, hence
                     # show all
                     self.show_all = True
+                elif value == 'html':
+                    # print('html format here')
+                    # self.printer = ['html format here']
+                    # from topydo.lib.printers.Html import HtmlPrinter
+                    # print(HtmlPrinter().print_list())
+                    # self.printer = HtmlPrinter()
+                    # counter = 1
+                    with open('todolist.html', 'w') as html_file:
+                        print('<ol>', file=html_file)
+                        for todo in self.todolist.todos():
+                            print(f"<li>{todo.source()}</li>", file=html_file)
+                        print('</ol>', file=html_file)
+                    self.out('<ol>')
+                    for todo in self.todolist.todos():
+                        self.out(f"<li>{todo.source()}</li>")
+                        # counter += 1
+                    self.out('</ol>')
+                    # print(self.todolist.print_todos())
+                    # self.printer = None
+                    return
                 else:
                     self.printer = None
             elif opt == '-F':
