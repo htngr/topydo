@@ -16,10 +16,8 @@
 
 import unittest
 import os
-from unittest.mock import patch
-from io import StringIO
-from testfixtures import TempDirectory
 import pytest
+
 from topydo.Commands import get_subcommand
 from topydo.commands.AddCommand import AddCommand
 from topydo.commands.DeleteCommand import DeleteCommand
@@ -420,13 +418,14 @@ class GetSubcommandTest(TopydoTest):
         self.assertIn('Error invalid command: joker :( Please try again. ', test_file_name )
         os.remove('test_file.txt')
 
-    # @pytest.fixture(autouse=True)
-    # def _pass_fixtures(self, capsys):
-    #     self.capsys = capsys
-    # def test_invalidCommand2(self):
-    #     get_subcommand(['helloworld'])
-    #     captured = self.capsys.readouterr()
-    #     self.assertEqual('Error invalid command: helloworld :( Please try again. \n', captured.out)
+    @pytest.fixture(autouse=True)
+    def _pass_fixtures(self, capsys):
+        self.capsys = capsys
+
+    def test_invalidCommand2(self):
+        get_subcommand(['helloworld'])
+        captured = self.capsys.readouterr()
+        self.assertEqual('Error invalid command: helloworld :( Please try again. \n', captured.out)
 
 
 if __name__ == '__main__':
