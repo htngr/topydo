@@ -22,6 +22,10 @@ from .command_testcase import CommandTest
 from .facilities import load_file_to_todolist
 
 
+
+
+
+
 class ListProjectCommandTest(CommandTest):
     def test_projects1(self):
         todolist = load_file_to_todolist("test/data/TodoListTest.txt")
@@ -53,6 +57,31 @@ class ListProjectCommandTest(CommandTest):
         self.assertEqual(self.output, "")
         self.assertEqual(self.errors,
                          command.usage() + "\n\n" + command.help() + "\n")
+
+
+    def test_sort_ignore_case(self):
+        input_list = ['applications', 'Books', 'cake']
+        expected_output = ['applications', 'Books', 'cake']
+        actual_output = sorted(input_list, key=lambda s: s.lower())
+        assert actual_output == expected_output
+
+
+    def test__lists_projects_alphabetically(self):
+        todolist = load_file_to_todolist("test/data/TodoListTest.txt")
+        todolist.add_project('Project A')
+        todolist.add_project('project b')
+        todolist.add_project('Project C')
+
+        output = []
+
+        command = ListProjectCommand([], todolist, p_out=output.append)
+        command.execute()
+
+        assert len(output) == 3
+        assert output[0] == 'Project A'
+        assert output[1] == 'project b'
+        assert output[2] == 'Project C'
+
 
 if __name__ == '__main__':
     unittest.main()

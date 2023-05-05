@@ -29,9 +29,6 @@ class ListProjectCommand(Command):
     def execute(self):
         if not super().execute():
             return False
-
-        #created a new variable projectsa that is a sorted list of all  projects
-        #key=lambda s  makes sure list sorted alphabetically regardless of case
         projects = sorted(self.todolist.projects(), key=lambda s: s.lower())
         for project in projects:
             self.out(project)
