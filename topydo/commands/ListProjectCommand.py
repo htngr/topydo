@@ -14,11 +14,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 from topydo.lib.Command import Command
 
 
 class ListProjectCommand(Command):
-    def __init__(self, p_args, p_todolist, #pragma: no branch
+    def __init__(self, p_args, p_todolist,  # pragma: no branch
                  p_out=lambda a: None,
                  p_err=lambda a: None,
                  p_prompt=lambda a: None):
@@ -28,8 +29,8 @@ class ListProjectCommand(Command):
     def execute(self):
         if not super().execute():
             return False
-
-        for project in sorted(self.todolist.projects(), key=lambda s: s.lower()):
+        projects = sorted(self.todolist.projects(), key=lambda s: s.lower())
+        for project in projects:
             self.out(project)
 
     def usage(self):

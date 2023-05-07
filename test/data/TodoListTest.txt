@@ -1,6 +1,7 @@
-(C) Foo @Context2 Not@Context +Project1 Not+Project
-(D) Bar @Context1 +Project2
-(C) Baz @Context1 +Project1 key:value
+(C) Foo @Context2 Not@Context +ProjectA Not+Project
+(D) Bar @Context1 +ProjectB
+(C) Baz @Context1 +ProjectA key:value
 (C) Drink beer @ home
 
 (C) 13 + 29 = 42
+

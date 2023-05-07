@@ -89,7 +89,8 @@ class DoCommandTest(CommandTest):
         command.execute()
         command.execute_post_archive_actions()
 
-        result = "|  2| Bar p:1\n|  3| Baz p:1\nCompleted: x {today} Bar p:1\nCompleted: x {today} Baz p:1\nCompleted: x {today} Foo id:1\n".format(today=self.today)
+        result = "|  2| Bar p:1\n|  3| Baz p:1\nCompleted: x {today} Bar p:1\nCompleted: x {today} Baz p:1\nCompleted: x {today} Foo id:1\n".format(
+            today=self.today)
 
         for number in [1, 2, 3]:
             self.assertTrue(self.todolist.todo(number).is_completed())
@@ -235,7 +236,9 @@ The following todo item(s) became active:
         command.execute()
         command.execute_post_archive_actions()
 
-        self.assertEqual(self.output, first_output + "Completed: x {} Baz p:1\nThe following todo item(s) became active:\n|  1| Foo id:1\n".format(self.today))
+        self.assertEqual(self.output,
+                         first_output + "Completed: x {} Baz p:1\nThe following todo item(s) became active:\n|  1| Foo id:1\n".format(
+                             self.today))
         self.assertEqual(self.errors, "")
 
     def test_activated_todos2(self):
@@ -285,7 +288,8 @@ The following todo item(s) became active:
         command.execute_post_archive_actions()
 
         self.assertTrue(self.todolist.dirty)
-        self.assertEqual(self.output, "|  2| Bar p:1\n|  3| Baz p:1\nCompleted: x 2014-11-18 Bar p:1\nCompleted: x 2014-11-18 Baz p:1\nCompleted: x 2014-11-18 Foo id:1\n")
+        self.assertEqual(self.output,
+                         "|  2| Bar p:1\n|  3| Baz p:1\nCompleted: x 2014-11-18 Bar p:1\nCompleted: x 2014-11-18 Baz p:1\nCompleted: x 2014-11-18 Foo id:1\n")
         self.assertEqual(self.errors, "")
 
     def test_do_custom_date3(self):
@@ -395,7 +399,9 @@ The following todo item(s) became active:
         self.assertTrue(self.todolist.todo(2).is_completed())
         self.assertTrue(self.todolist.todo(3).is_completed())
 
-        self.assertEqual(self.output, "|  2| Bar p:1\n|  3| Baz p:1\nCompleted: x {today} Bar p:1\nCompleted: x {today} Baz p:1\nCompleted: x {today} Foo id:1\n".format(today=self.today))
+        self.assertEqual(self.output,
+                         "|  2| Bar p:1\n|  3| Baz p:1\nCompleted: x {today} Bar p:1\nCompleted: x {today} Baz p:1\nCompleted: x {today} Foo id:1\n".format(
+                             today=self.today))
 
     def test_multi_do2(self):
         command = DoCommand(["1", "3"], self.todolist, self.out, self.error,
@@ -407,7 +413,9 @@ The following todo item(s) became active:
         self.assertFalse(self.todolist.todo(2).is_completed())
         self.assertTrue(self.todolist.todo(3).is_completed())
 
-        self.assertEqual(self.output, "|  2| Bar p:1\n|  3| Baz p:1\nCompleted: x {today} Foo id:1\nCompleted: x {today} Baz p:1\n".format(today=self.today))
+        self.assertEqual(self.output,
+                         "|  2| Bar p:1\n|  3| Baz p:1\nCompleted: x {today} Foo id:1\nCompleted: x {today} Baz p:1\n".format(
+                             today=self.today))
 
     def test_multi_do3(self):
         command = DoCommand(["3", "3"], self.todolist, self.out, self.error,
@@ -459,7 +467,9 @@ The following todo item(s) became active:
         command.execute_post_archive_actions()
 
         self.assertTrue(self.todolist.dirty)
-        self.assertEqual(self.output, "Completed: x {t} a @test with due:2015-06-03\nCompleted: x {t} a @test with +project\n".format(t=self.today))
+        self.assertEqual(self.output,
+                         "Completed: x {t} a @test with due:2015-06-03\nCompleted: x {t} a @test with +project\n".format(
+                             t=self.today))
         self.assertEqual(self.errors, "")
 
     def test_expr_do2(self):
@@ -496,7 +506,8 @@ The following todo item(s) became active:
         command.execute()
         command.execute_post_archive_actions()
 
-        result = "|  2| Bar p:1\n|  3| Baz p:1\nCompleted: x {t} Bar p:1\nCompleted: x {t} Baz p:1\nCompleted: x {t} Foo id:1\n".format(t=self.today)
+        result = "|  2| Bar p:1\n|  3| Baz p:1\nCompleted: x {t} Bar p:1\nCompleted: x {t} Baz p:1\nCompleted: x {t} Foo id:1\n".format(
+            t=self.today)
 
         self.assertTrue(self.todolist.dirty)
         self.assertEqual(self.output, result)
@@ -1085,6 +1096,10 @@ The following todo item(s) became active:
         self.assertEqual(self.output, "")
         self.assertEqual(self.errors,
                          command.usage() + "\n\n" + command.help() + "\n")
+
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
