@@ -84,6 +84,7 @@ class _Config:
             'ls': {
                 'hide_tags': 'id,p,ical',
                 'hidden_item_tags': 'h,hide',
+                'hidden_projects': 'project',
                 'indent': '0',
                 'list_limit': '-1',
                 'list_format': '|%I| %x %{(}p{)} %c %s %k %{due:}d %{t:}t',
@@ -352,6 +353,13 @@ class _Config:
         return [] if hidden_item_tags == '' else [tag.strip() for tag in
                                                   hidden_item_tags.split(',')]
 
+    def hidden_projects(self):
+        """ Returns a list of projects which hide an item from the 'ls' output. """
+        hidden_projects = self.cp.get('ls', 'hidden_projects')
+        # pylint: disable=no-member
+        return [] if hidden_projects == '' else [tag.strip() for tag in
+                                                  hidden_projects.split(',')]
+    
     @lru_cache(maxsize=26)
     def priority_color(self, p_priority):
         """

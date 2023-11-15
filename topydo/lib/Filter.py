@@ -95,7 +95,7 @@ class RelevanceFilter(Filter):
     Matches when the todo is relevant, i.e.:
 
     The item has not been completed AND
-    The start date is blank, today or in the past, AND
+    The start date is today or in the past, AND
     The priority is 'A', or the priority is 'B' with due date within 30 days, or
     the priority is 'C' with due date within 14 days.
     """
@@ -179,20 +179,23 @@ class HiddenTagFilter(Filter):
         """
         Constructor.
 
-        A filter which hides items marked with the approriate tag.
+        A filter which hides items marked with the approriate tag or project.
         """
         super().__init__()
 
     def match(self, p_todo):
         """
-        Returns True when p_todo doesn't have a tag to mark it as hidden.
+        Returns True when p_todo doesn't have a tag or project to mark it as hidden.
         """
         for my_tag in config().hidden_item_tags():
             my_values = p_todo.tag_values(my_tag)
             for my_value in my_values:
                 if not my_value in (0, '0', False, 'False'):
                     return False
-
+        for prj in p_todo.projects():
+            if prj in config().hidden_projects():
+                return False
+            
         return True
 
 
