@@ -61,7 +61,7 @@ class Todo(TodoBase):
         task has not yet been completed.
         """
         start = self.start_date()
-        return not self.is_completed() and (start and start <= date.today())
+        return not self.is_completed() and ((start and start <= date.today()) or self.due_date())
 
     def is_overdue(self):
         """
